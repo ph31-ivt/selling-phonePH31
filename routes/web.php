@@ -17,3 +17,16 @@ Route::get('/', function () {
 Route::get('/test', function () {
     return view('admin.index');
 });
+
+Route::prefix('admin')->group(function () {
+
+    Route::prefix('categories')->group(function () {
+        Route::get('/list', 'CategoryController@index')->name('category.index');
+        Route::get('/create', 'CategoryController@create')->name('category.create');
+        Route::post('/create', 'CategoryController@store')->name('category.store');
+        Route::get('/edit/{id}', 'CategoryController@edit')->name('category.edit');
+        Route::put('/edit/{id}', 'CategoryController@update')->name('category.update');
+        Route::delete('/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');
+    });
+
+});;
