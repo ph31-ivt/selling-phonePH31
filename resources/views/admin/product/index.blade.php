@@ -3,12 +3,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Category
+            Product
             <small>list</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
-            <li class="active">Category</li>
+            <li class="active">Product</li>
         </ol>
     </section>
 
@@ -40,7 +40,7 @@
         </div>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <a href="{{route('category.create')}}" class="btn btn-primary">Create</a>
+                <a href="{{route('product.create')}}" class="btn btn-primary">Create</a>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
@@ -51,13 +51,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($categories as $category)
+                        @foreach($products as $product)
                             <tr>
-                                <td>{{$category->id}}</td>
-                                <td>{{$category->name}}</td>
+                                <td>{{$product->id}}</td>
+                                <td>{{$product->name}}</td>
                                 <td>
-                                    <a href="{{route('category.edit',$category->id)}}" class="btn btn-primary">Edit</a> |
-                                    <form action="{{route('category.destroy',$category->id)}}" method="post" style="display: inline">
+                                    <a href="{{route('product.edit',$product->id)}}" class="btn btn-primary">Edit</a> |
+                                    <form action="{{route('product.destroy',$product->id)}}" method="post" style="display: inline">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">Delete</button>

@@ -32,20 +32,20 @@
                 </a>
             </li>
             <li>
-                <a href="">
-                    <i class="fa fa-th"></i> <span>Categories</span>
-                    <span class="pull-right-container"><small class="label pull-right bg-green">2</small></span>
+                <a href="{{route('category.index')}}">
+                    <i class="fa fa-list-alt"></i> <span>Categories</span>
+                    <span class="pull-right-container"><small class="label pull-right bg-green">{{\App\Category::countCategory()}}</small></span>
                 </a>
             </li>
             <li>
                 <a href="">
-                    <i class="fa fa-th"></i> <span>Products</span>
+                    <i class="fa fa-tablet"></i> <span>Products</span>
                     <span class="pull-right-container"><small class="label pull-right bg-green">2</small></span>
                 </a>
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-laptop"></i>
+                    <i class="fa fa-shopping-cart"></i>
                     <span>Order</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
@@ -58,7 +58,7 @@
                     <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
                 </ul>
             </li>
-            <li><a href=""><i class="fa fa-book"></i> <span>Users</span></a></li>
+            <li><a href=""><i class="fa fa-user"></i> <span>Users</span></a></li>
         </ul>
     </section>
     <!-- /.sidebar -->
