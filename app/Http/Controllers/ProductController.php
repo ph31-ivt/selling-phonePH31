@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Image;
 use App\Product;
 use App\Product_Detail;
 use Illuminate\Http\Request;
@@ -55,6 +56,16 @@ class ProductController extends Controller
         $product_detail->memory = $request->memory;
         $product_detail->sim = $request->sim;
         $product_detail->save();
+
+        if($request->file('images_up')){
+            foreach($request->file('images_up') as $image){
+                $path=$image->store('images');
+                $img= Image::create([
+                    'url' =>$path,
+                    'product_id' => $product->id
+                ]);
+            }
+        }
 
         return redirect()->route('product.create')->with('success','Create successfully');
     }

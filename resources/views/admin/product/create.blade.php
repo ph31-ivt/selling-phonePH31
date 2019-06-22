@@ -40,7 +40,7 @@
         </div>
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <form action="{{route('product.store')}}" method="post" >
+                <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">
                         <div class="col-md-4">
@@ -49,7 +49,11 @@
                         </div>
                         <div class="col-md-4">
                             <label for="category_id">Category:</label>
-                            <input type="text" class="form-control" name="category_id" required id="category_id">
+                            <select name="category_id" id="category_id" class="form-control" required>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-4">
                             <label for="price">Price:</label>
@@ -101,6 +105,13 @@
                         <div class="col-md-4">
                             <label for="sim">Sim:</label>
                             <input type="text" class="form-control" name="sim" id="sim">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="images">Images:</label>
+                            <input type="file" class="form-control" name="images_up[]" id="images" multiple>
                         </div>
                     </div>
 

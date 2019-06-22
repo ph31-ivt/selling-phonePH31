@@ -46,7 +46,11 @@
                         <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Image</th>
                             <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Quantily</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -54,7 +58,15 @@
                         @foreach($products as $product)
                             <tr>
                                 <td>{{$product->id}}</td>
+                                <td>
+                                    @if(count($product->images)>0)
+                                        <img src="{{asset('storage/'.$product->images[0]->url)}}" width="80px">
+                                    @endif
+                                </td>
                                 <td>{{$product->name}}</td>
+                                <td>{{$product->category->name}}</td>
+                                <td>{{number_format($product->price)}} đ</td>
+                                <td>{{$product->quantily}}</td>
                                 <td>
                                     <a href="{{route('product.edit',$product->id)}}" class="btn btn-primary">Edit</a> |
                                     <form action="{{route('product.destroy',$product->id)}}" method="post" style="display: inline">

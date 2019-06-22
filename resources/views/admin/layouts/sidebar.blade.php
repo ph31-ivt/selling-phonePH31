@@ -38,9 +38,9 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{route('product.index')}}">
                     <i class="fa fa-tablet"></i> <span>Products</span>
-                    <span class="pull-right-container"><small class="label pull-right bg-green">2</small></span>
+                    <span class="pull-right-container"><small class="label pull-right bg-green">{{\App\Product::countProduct()}}</small></span>
                 </a>
             </li>
             <li class="treeview">
