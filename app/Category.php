@@ -15,4 +15,10 @@ class Category extends Model
     {
         return $this->hasMany('App\Product');
     }
+
+    public static function countCategory()
+    {
+        $count = count(\DB::table('categories')->select('id')->get());
+        return $count;
+    }
 }

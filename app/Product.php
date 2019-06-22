@@ -35,4 +35,10 @@ class Product extends Model
     {
         return $this->hasMany('App\Order_Detail');
     }
+
+    public static function countProduct()
+    {
+        $count = count(\DB::table('products')->select('id')->get());
+        return $count;
+    }
 }
