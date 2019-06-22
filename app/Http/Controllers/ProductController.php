@@ -38,6 +38,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'category_id' => 'required|numeric',
+            'price' => 'required|numeric',
+            'quantily' => 'required|numeric',
+
+            'screen' => 'nullable|max:255',
+            'os' => 'nullable|max:255',
+            'camera' => 'nullable|max:255',
+            'font_camera' => 'nullable|max:255',
+            'cpu' => 'nullable|max:255',
+            'ram' => 'nullable|max:255',
+            'memory' => 'nullable|max:255',
+            'sim' => 'nullable|max:255',
+        ]);
         $product = new Product();
         $product->name = $request->name;
         $product->category_id = $request->category_id;
@@ -78,7 +93,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        return view('admin.product.show',compact('product'));
     }
 
     /**
@@ -89,7 +105,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        return view('admin.product.edit',compact('product'));
     }
 
     /**
@@ -101,7 +118,50 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'category_id' => 'required|numeric',
+            'price' => 'required|numeric',
+            'quantily' => 'required|numeric',
+
+            'screen' => 'nullable|max:255',
+            'os' => 'nullable|max:255',
+            'camera' => 'nullable|max:255',
+            'font_camera' => 'nullable|max:255',
+            'cpu' => 'nullable|max:255',
+            'ram' => 'nullable|max:255',
+            'memory' => 'nullable|max:255',
+            'sim' => 'nullable|max:255',
+        ]);
+        $product = Product::find($id);
+        $product->name = $request->name;
+        $product->category_id = $request->category_id;
+        $product->price = $request->price;
+        $product->quantily = $request->quantily;
+        $product->save();
+
+        $product_detail = Product_Detail::where('product_id','=',$product->id)->first();
+        $product_detail->screen = $request->screen;
+        $product_detail->os = $request->os;
+        $product_detail->camera = $request->camera;
+        $product_detail->font_camera = $request->font_camera;
+        $product_detail->cpu = $request->cpu;
+        $product_detail->ram = $request->ram;
+        $product_detail->memory = $request->memory;
+        $product_detail->sim = $request->sim;
+        $product_detail->save();
+
+        if($request->file('images_up')){
+            foreach($request->file('images_up') as $image){
+                $path=$image->store('images');
+                $img= Image::create([
+                    'url' =>$path,
+                    'product_id' => $product->id
+                ]);
+            }
+        }
+
+        return redirect()->route('product.index')->with('success','Edit successfully');
     }
 
     /**
@@ -112,6 +172,12 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        if (count($product->comments)>0 || count($product->order_Details)>0)
+        {
+            return redirect()->route('product.index')->with('error','Can\'t delete product!');
+        }
+        $product->delete();
+        return redirect()->route('product.index')->with('success','Delete product successfully!');
     }
 }

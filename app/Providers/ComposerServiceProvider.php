@@ -26,7 +26,7 @@ class ComposerServiceProvider extends ServiceProvider
     {
         // Using class based composers...
         View::composer(
-            'admin.product.create', 'App\Http\ViewComposers\CategoriesComposer'
+            ['admin.product.create','admin.product.edit'], 'App\Http\ViewComposers\CategoriesComposer'
         );
     }
 }

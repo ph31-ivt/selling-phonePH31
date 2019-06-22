@@ -4,7 +4,7 @@
     <section class="content-header">
         <h1>
             Product
-            <small>list</small>
+            <small>Show</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
@@ -40,7 +40,6 @@
         </div>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <a href="{{route('product.create')}}" class="btn btn-primary">Create</a>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
@@ -55,7 +54,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($products as $product)
                             <tr>
                                 <td>{{$product->id}}</td>
                                 <td>
@@ -68,7 +66,7 @@
                                 <td>{{number_format($product->price)}} đ</td>
                                 <td>{{$product->quantily}}</td>
                                 <td>
-                                    <a href="{{route('product.show',$product->id)}}" class="btn btn-primary">Show</a> |
+                                    <a href="" class="btn btn-primary">Show</a> |
                                     <a href="{{route('product.edit',$product->id)}}" class="btn btn-primary">Edit</a> |
                                     <form action="{{route('product.destroy',$product->id)}}" method="post" style="display: inline">
                                         @csrf
@@ -77,7 +75,6 @@
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
                         </tbody>
                     </table>
                 </div>
