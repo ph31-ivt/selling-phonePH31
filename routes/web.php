@@ -31,6 +31,7 @@ Route::prefix('admin')->group(function () {
 
     Route::prefix('products')->group(function () {
         Route::get('/list', 'ProductController@index')->name('product.index');
+        Route::get('/show/{id}', 'ProductController@show')->name('product.show');
         Route::get('/create', 'ProductController@create')->name('product.create');
         Route::post('/create', 'ProductController@store')->name('product.store');
         Route::get('/edit/{id}', 'ProductController@edit')->name('product.edit');

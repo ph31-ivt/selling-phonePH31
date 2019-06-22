@@ -4,7 +4,7 @@
     <section class="content-header">
         <h1>
             Product
-            <small>Create</small>
+            <small>Edit</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
@@ -40,39 +40,44 @@
         </div>
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('product.update',$product->id)}}" method="post" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="form-group row">
                         <div class="col-md-4">
                             <label for="name">Name:</label>
-                            <input type="text" class="form-control" name="name" required id="name">
+                            <input type="text" class="form-control" name="name" required id="name" value="{{$product->name}}">
                         </div>
                         <div class="col-md-4">
                             <label for="category_id">Category:</label>
                             <select name="category_id" id="category_id" class="form-control" required>
                                 @foreach($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    <option value="{{$category->id}}"
+                                        @if($product->category_id == $category->id)
+                                            selected
+                                        @endif
+                                    >{{$category->name}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-md-4">
                             <label for="price">Price:</label>
-                            <input type="number" class="form-control" name="price" required id="price">
+                            <input type="number" class="form-control" name="price" required id="price" value="{{$product->price}}">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-4">
                             <label for="quantily">Quantily:</label>
-                            <input type="number" class="form-control" name="quantily" required id="quantily">
+                            <input type="number" class="form-control" name="quantily" required id="quantily" value="{{$product->quantily}}">
                         </div>
                         <div class="col-md-4">
                             <label for="screen">Screen:</label>
-                            <input type="text" class="form-control" name="screen" id="screen">
+                            <input type="text" class="form-control" name="screen" id="screen" value="{{$product->product_Detail->screen}}">
                         </div>
                         <div class="col-md-4">
                             <label for="os">OS:</label>
-                            <input type="text" class="form-control" name="os" id="os">
+                            <input type="text" class="form-control" name="os" id="os" value="{{$product->product_Detail->os}}">
                         </div>
                     </div>
 
@@ -81,30 +86,30 @@
                     <div class="form-group row">
                         <div class="col-md-4">
                             <label for="camera">Camera:</label>
-                            <input type="text" class="form-control" name="camera" id="camera">
+                            <input type="text" class="form-control" name="camera" id="camera" value="{{$product->product_Detail->camera}}">
                         </div>
                         <div class="col-md-4">
                             <label for="font_camera">Font Camera:</label>
-                            <input type="text" class="form-control" name="font_camera" id="font_camera">
+                            <input type="text" class="form-control" name="font_camera" id="font_camera" value="{{$product->product_Detail->font_camera}}">
                         </div>
                         <div class="col-md-4">
                             <label for="cpu">Cpu:</label>
-                            <input type="text" class="form-control" name="cpu" id="cpu">
+                            <input type="text" class="form-control" name="cpu" id="cpu" value="{{$product->product_Detail->cpu}}">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-4">
                             <label for="ram">Ram:</label>
-                            <input type="text" class="form-control" name="ram" id="ram">
+                            <input type="text" class="form-control" name="ram" id="ram" value="{{$product->product_Detail->ram}}">
                         </div>
                         <div class="col-md-4">
                             <label for="memory">Memory:</label>
-                            <input type="text" class="form-control" name="memory" id="memory">
+                            <input type="text" class="form-control" name="memory" id="memory" value="{{$product->product_Detail->memory}}">
                         </div>
                         <div class="col-md-4">
                             <label for="sim">Sim:</label>
-                            <input type="text" class="form-control" name="sim" id="sim">
+                            <input type="text" class="form-control" name="sim" id="sim" value="{{$product->product_Detail->sim}}">
                         </div>
                     </div>
 
@@ -115,7 +120,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="submit" class="btn btn-primary">Edit</button>
                 </form>
             </div>
         </div>
