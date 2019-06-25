@@ -39,9 +39,10 @@ class CategoryController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|unique:categories|max:255',
         ]);
-        $category = new Category();
-        $category->name = $request->name;
-        $category->save();
+
+        $data = $request->only('name');
+        $category = Category::create($data);
+
         return redirect()->route('category.create')->with('success','Create successfully');
     }
 
@@ -64,7 +65,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
         return view('admin.category.edit',compact('category'));
     }
 
@@ -80,7 +81,7 @@ class CategoryController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|unique:categories|max:255',
         ]);
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
         $category->name = $request->name;
         $category->save();
         return redirect()->route('category.index')->with('success','Edit successfully');
@@ -94,7 +95,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
         if (count($category->products)>0)
         {
             return redirect()->route('category.index')->with('error','Can\'t delete category!');

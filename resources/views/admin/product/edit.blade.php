@@ -1,5 +1,12 @@
 @extends('admin.layouts.master')
 @section('content')
+    <style>
+        .content{
+            background: #ffffff;
+            margin-top: 1em;
+            width: 98%;
+        }
+    </style>
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
