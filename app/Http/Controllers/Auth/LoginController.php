@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -35,5 +38,25 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required|min:8',
+        ]);
+    }
+
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+        if (Auth::attempt(['email'=>$request->email,'password'=>$request->password,'user_type'=>User::USER_ADMIN,'active'=>1])){
+            return redirect()->intended(route('category.index'));
+        }elseif (Auth::attempt(['email'=>$request->email,'password'=>$request->password,'user_type'=>User::USER_CUSTOMER,'active'=>1])){
+            return redirect()->route('home');
+        } else{
+            return redirect()->route('login')->with('error', 'Your email or password is incorrect!');
+        }
     }
 }
