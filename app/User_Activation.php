@@ -15,4 +15,5 @@ class User_Activation extends Model
     {
         return $this->belongsTo('App\User');
     }
+
 }
