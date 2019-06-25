@@ -26,7 +26,7 @@ class CategoriesComposer
      */
     public function compose(View $view)
     {
-        $view->with('categories', $this->categories->get());
+        $view->with('categories', $this->categories->get(['id','name']));
 //        dd($this->categories->get());
     }
 }

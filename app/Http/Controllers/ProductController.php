@@ -93,7 +93,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
         return view('admin.product.show',compact('product'));
     }
 
@@ -105,7 +105,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
         return view('admin.product.edit',compact('product'));
     }
 
@@ -133,7 +133,7 @@ class ProductController extends Controller
             'memory' => 'nullable|max:255',
             'sim' => 'nullable|max:255',
         ]);
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
         $product->name = $request->name;
         $product->category_id = $request->category_id;
         $product->price = $request->price;
@@ -172,7 +172,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
         if (count($product->comments)>0 || count($product->order_Details)>0)
         {
             return redirect()->route('product.index')->with('error','Can\'t delete product!');

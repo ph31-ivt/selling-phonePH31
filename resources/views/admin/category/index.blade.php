@@ -1,5 +1,24 @@
 @extends('admin.layouts.master')
 @section('content')
+    <style>
+        .content{
+            background: #ffffff;
+            margin-top: 1em;
+            width: 98%;
+        }
+        .card .create{
+            margin-bottom: 0.8em;
+        }
+        .card table, th, td{
+            border: 1px solid #3c8dbc;
+        }
+        .card th{
+            text-align: center;
+            background-color: #3c8dbc;
+            border-color: #fff;
+            color: #fff;
+        }
+    </style>
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
@@ -39,10 +58,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <a href="{{route('category.create')}}" class="btn btn-primary">Create</a>
+            <div class="col-md-8 col-md-offset-2 card">
+                <a href="{{route('category.create')}}" class="btn btn-primary create">Create</a>
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table">
                         <thead>
                         <tr>
                             <th>ID</th>
