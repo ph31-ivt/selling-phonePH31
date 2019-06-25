@@ -18,7 +18,7 @@ Route::get('/test', function () {
     return view('admin.index');
 });
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('admin')->group(function () {
 
     Route::prefix('categories')->group(function () {
         Route::get('/list', 'CategoryController@index')->name('category.index');
