@@ -43,11 +43,8 @@
                         </ul>
                     </div>
                 @endif
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <form action="{{route('category.edit',$category->id)}}" method="post" >
+
+                <form action="{{route('category.update',$category->id)}}" method="post" >
                     @csrf
                     @method('PUT')
                     <div class="form-group">

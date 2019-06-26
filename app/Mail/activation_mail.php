@@ -31,6 +31,8 @@ class activation_mail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.user_activation');
+        return $this->subject('CellPhone - Activation')
+            ->from('hovannhan060197@gmail.com','CellPhone')
+            ->view('mail.user_activation');
     }
 }

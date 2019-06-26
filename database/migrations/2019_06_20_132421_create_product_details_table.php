@@ -24,9 +24,11 @@ class CreateProductDetailsTable extends Migration
             $table->string('camera')->nullable();
             $table->string('font_camera')->nullable();
             $table->string('cpu')->nullable();
+            $table->string('gpu')->nullable();
             $table->string('ram')->nullable();
             $table->string('memory')->nullable();
             $table->string('sim')->nullable();
+            $table->string('Battery_capacity')->nullable();
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@
         .card th{
             text-align: center;
             background-color: #3c8dbc;
-            border-color: #fff;
+            border: none;
             color: #fff;
         }
     </style>
@@ -35,7 +35,7 @@
     <section class="content">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-12 card">
                 @if (session('success'))
                     <div class="alert alert-success" role="alert">
                         {{ session('success') }}
@@ -55,10 +55,7 @@
                         </ul>
                     </div>
                 @endif
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 card">
+
                 <a href="{{route('category.create')}}" class="btn btn-primary create">Create</a>
                 <div class="table-responsive">
                     <table class="table">
@@ -86,6 +83,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    {{$categories->links()}}
                 </div>
             </div>
         </div>
