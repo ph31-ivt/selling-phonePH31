@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(5);
         return view('admin.product.index',compact('products'));
     }
 
@@ -39,7 +39,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|unique:products|max:255',
             'category_id' => 'required|numeric',
             'price' => 'required|numeric',
             'quantily' => 'required|numeric',
@@ -49,9 +49,11 @@ class ProductController extends Controller
             'camera' => 'nullable|max:255',
             'font_camera' => 'nullable|max:255',
             'cpu' => 'nullable|max:255',
+            'gpu' => 'nullable|max:255',
             'ram' => 'nullable|max:255',
             'memory' => 'nullable|max:255',
             'sim' => 'nullable|max:255',
+            'Battery_capacity' => 'nullable|max:255',
         ]);
         $product = new Product();
         $product->name = $request->name;
@@ -67,9 +69,11 @@ class ProductController extends Controller
         $product_detail->camera = $request->camera;
         $product_detail->font_camera = $request->font_camera;
         $product_detail->cpu = $request->cpu;
+        $product_detail->gpu = $request->gpu;
         $product_detail->ram = $request->ram;
         $product_detail->memory = $request->memory;
         $product_detail->sim = $request->sim;
+        $product_detail->Battery_capacity = $request->Battery_capacity;
         $product_detail->save();
 
         if($request->file('images_up')){
@@ -119,7 +123,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|unique:products,id,'.$id.'|max:255',
             'category_id' => 'required|numeric',
             'price' => 'required|numeric',
             'quantily' => 'required|numeric',
@@ -129,9 +133,11 @@ class ProductController extends Controller
             'camera' => 'nullable|max:255',
             'font_camera' => 'nullable|max:255',
             'cpu' => 'nullable|max:255',
+            'gpu' => 'nullable|max:255',
             'ram' => 'nullable|max:255',
             'memory' => 'nullable|max:255',
             'sim' => 'nullable|max:255',
+            'Battery_capacity' => 'nullable|max:255',
         ]);
         $product = Product::findOrFail($id);
         $product->name = $request->name;
@@ -146,9 +152,11 @@ class ProductController extends Controller
         $product_detail->camera = $request->camera;
         $product_detail->font_camera = $request->font_camera;
         $product_detail->cpu = $request->cpu;
+        $product_detail->gpu = $request->gpu;
         $product_detail->ram = $request->ram;
         $product_detail->memory = $request->memory;
         $product_detail->sim = $request->sim;
+        $product_detail->Battery_capacity = $request->Battery_capacity;
         $product_detail->save();
 
         if($request->file('images_up')){

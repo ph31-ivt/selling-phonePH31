@@ -52,9 +52,12 @@ class LoginController extends Controller
     {
         $this->validateLogin($request);
         if (Auth::attempt(['email'=>$request->email,'password'=>$request->password,'user_type'=>User::USER_ADMIN,'active'=>1])){
-            return redirect()->intended(route('category.index'));
+            return redirect()->intended(route('admin.index'));
         }elseif (Auth::attempt(['email'=>$request->email,'password'=>$request->password,'user_type'=>User::USER_CUSTOMER,'active'=>1])){
-            return redirect()->route('home');
+            return redirect()->intended(route('home'));
+        }elseif (Auth::attempt(['email'=>$request->email,'password'=>$request->password,'user_type'=>User::USER_CUSTOMER,'active'=>0])){
+            Auth::logout();
+            return redirect()->route('login')->with('error',"Please activated your account !");
         } else{
             return redirect()->route('login')->with('error', 'Your email or password is incorrect!');
         }

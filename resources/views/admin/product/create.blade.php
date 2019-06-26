@@ -43,10 +43,7 @@
                         </ul>
                     </div>
                 @endif
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+
                 <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">
@@ -94,6 +91,7 @@
                             <label for="font_camera">Font Camera:</label>
                             <input type="text" class="form-control" name="font_camera" id="font_camera">
                         </div>
+
                         <div class="col-md-4">
                             <label for="cpu">Cpu:</label>
                             <input type="text" class="form-control" name="cpu" id="cpu">
@@ -102,6 +100,10 @@
 
                     <div class="form-group row">
                         <div class="col-md-4">
+                            <label for="gpu">Gpu:</label>
+                            <input type="text" class="form-control" name="gpu" id="gpu">
+                        </div>
+                        <div class="col-md-4">
                             <label for="ram">Ram:</label>
                             <input type="text" class="form-control" name="ram" id="ram">
                         </div>
@@ -109,16 +111,23 @@
                             <label for="memory">Memory:</label>
                             <input type="text" class="form-control" name="memory" id="memory">
                         </div>
-                        <div class="col-md-4">
-                            <label for="sim">Sim:</label>
-                            <input type="text" class="form-control" name="sim" id="sim">
-                        </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-4">
+                            <label for="sim">Sim:</label>
+                            <input type="text" class="form-control" name="sim" id="sim">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="Battery_capacity">Battery capacity:</label>
+                            <input type="text" class="form-control" name="Battery_capacity" id="Battery_capacity">
+                        </div>
+                        <div class="col-md-4">
+                            <img id="blah" alt="your image" width="100" height="100" style="display: block"/>
                             <label for="images">Images:</label>
-                            <input type="file" class="form-control" name="images_up[]" id="images" multiple>
+                            <input type="file" class="form-control" name="images_up[]" id="images" multiple
+                                   onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
+                            >
                         </div>
                     </div>
 

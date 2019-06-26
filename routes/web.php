@@ -20,6 +20,10 @@ Route::get('/test', function () {
 
 Route::prefix('admin')->middleware('admin')->group(function () {
 
+    Route::get('/dashboard', function () {
+        return view('admin.index');
+    })->name('admin.index');
+
     Route::prefix('categories')->group(function () {
         Route::get('/list', 'CategoryController@index')->name('category.index');
         Route::get('/create', 'CategoryController@create')->name('category.create');

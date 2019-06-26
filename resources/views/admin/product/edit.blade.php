@@ -43,10 +43,7 @@
                         </ul>
                     </div>
                 @endif
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+
                 <form action="{{route('product.update',$product->id)}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -107,6 +104,10 @@
 
                     <div class="form-group row">
                         <div class="col-md-4">
+                            <label for="gpu">Gpu:</label>
+                            <input type="text" class="form-control" name="gpu" id="gpu" value="{{$product->product_Detail->gpu}}">
+                        </div>
+                        <div class="col-md-4">
                             <label for="ram">Ram:</label>
                             <input type="text" class="form-control" name="ram" id="ram" value="{{$product->product_Detail->ram}}">
                         </div>
@@ -114,16 +115,23 @@
                             <label for="memory">Memory:</label>
                             <input type="text" class="form-control" name="memory" id="memory" value="{{$product->product_Detail->memory}}">
                         </div>
-                        <div class="col-md-4">
-                            <label for="sim">Sim:</label>
-                            <input type="text" class="form-control" name="sim" id="sim" value="{{$product->product_Detail->sim}}">
-                        </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-4">
+                            <label for="sim">Sim:</label>
+                            <input type="text" class="form-control" name="sim" id="sim" value="{{$product->product_Detail->sim}}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="Battery_capacity">Battery capacity:</label>
+                            <input type="text" class="form-control" name="Battery_capacity" id="Battery_capacity" value="{{$product->product_Detail->Battery_capacity}}">
+                        </div>
+                        <div class="col-md-4">
+                            <img id="blah" src="{{asset('storage/'.$product->images[0]->url)}}" alt="your image" width="100" height="100" style="display: block"/>
                             <label for="images">Images:</label>
-                            <input type="file" class="form-control" name="images_up[]" id="images" multiple>
+                            <input type="file" class="form-control" name="images_up[]" id="images" multiple
+                                   onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
+                            >
                         </div>
                     </div>
 

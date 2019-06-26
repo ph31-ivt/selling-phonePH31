@@ -19,13 +19,15 @@ class IsAdministrator
     public function handle($request, Closure $next)
     {
         if(!(Auth::user()->user_type == User::USER_ADMIN)){
-            if ($request->ajax()) {
-                return response('Forbidden', 403);
-            }
-            else
-            {
-                throw new AccessDeniedException('Forbidden');
-            }
+//            if ($request->ajax()) {
+//                return response('Forbidden', 403);
+//            }
+//            else
+//            {
+////                throw new AccessDeniedException('Forbidden');
+//                return redirect()->back();
+//            }
+            return redirect()->route('home');
         }
         return $next($request);
     }
