@@ -127,6 +127,13 @@
                             <input type="text" class="form-control" name="Battery_capacity" id="Battery_capacity" value="{{$product->product_Detail->Battery_capacity}}">
                         </div>
                         <div class="col-md-4">
+                            <label for="describe">Describe:</label>
+                            <textarea class="form-control" name="describe" id="describe">{{$product->describe}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-4">
                             <img id="blah" src="{{asset('storage/'.$product->images[0]->url)}}" alt="your image" width="100" height="100" style="display: block"/>
                             <label for="images">Images:</label>
                             <input type="file" class="form-control" name="images_up[]" id="images" multiple

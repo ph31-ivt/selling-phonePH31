@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
                 ->onDelete('cascade');
             $table->double('price');
             $table->integer('quantily');
+            $table->text('describe')->nullable();
             $table->timestamps();
         });
     }

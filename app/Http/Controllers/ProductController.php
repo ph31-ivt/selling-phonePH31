@@ -55,12 +55,14 @@ class ProductController extends Controller
             'memory' => 'nullable|max:255',
             'sim' => 'nullable|max:255',
             'Battery_capacity' => 'nullable|max:255',
+            'describe' => 'nullable',
         ]);
         $product = new Product();
         $product->name = $request->name;
         $product->category_id = $request->category_id;
         $product->price = $request->price;
         $product->quantily = $request->quantily;
+        $product->describe = $request->describe;
         $product->save();
 
         $product_detail = new Product_Detail();
@@ -139,12 +141,14 @@ class ProductController extends Controller
             'memory' => 'nullable|max:255',
             'sim' => 'nullable|max:255',
             'Battery_capacity' => 'nullable|max:255',
+            'describe' => 'nullable'
         ]);
         $product = Product::findOrFail($id);
         $product->name = $request->name;
         $product->category_id = $request->category_id;
         $product->price = $request->price;
         $product->quantily = $request->quantily;
+        $product->describe = $request->describe;
         $product->save();
 
         $product_detail = Product_Detail::where('product_id','=',$product->id)->first();
