@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Image;
 use App\Product;
 use App\Product_Detail;
@@ -187,5 +188,24 @@ class ProductController extends Controller
         }
         $product->delete();
         return redirect()->route('product.index')->with('success','Delete product successfully!');
+    }
+
+    public function search(Request $request)
+    {
+        $key = $request->key;
+        if (!$key == '')
+        {
+            $products = Product::where('id','like','%'.$key.'%')
+                ->orWhere('name','like','%'.$key.'%')
+                ->orWhere('price','like','%'.$key.'%')
+                ->orWhere('quantily','like','%'.$key.'%')
+                ->paginate(5);
+//            dd($products);
+
+            return view('admin.product.index',compact('products'));
+        }
+        $products = Product::paginate(5);
+        return view('admin.product.index',compact('products'));
+
     }
 }

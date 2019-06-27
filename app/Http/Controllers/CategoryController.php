@@ -103,4 +103,17 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()->route('category.index')->with('success','Delete category successfully!');
     }
+
+    public function search(Request $request)
+    {
+        $key = $request->key;
+        if (!$key == '')
+        {
+            $categories = Category::where('id','like','%'.$key.'%')
+                        ->orWhere('name','like','%'.$key.'%')->paginate(5);
+            return view('admin.category.index',compact('categories'));
+        }
+        $categories = Category::paginate(5);
+        return view('admin.category.index',compact('categories'));
+    }
 }

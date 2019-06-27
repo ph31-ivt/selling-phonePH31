@@ -6,8 +6,12 @@
             margin-top: 1em;
             width: 98%;
         }
+        .card{
+            padding: 1em;
+        }
         .card .create{
             margin-bottom: 0.8em;
+            display: inline-table;
         }
         .card table, th, td{
             border: 1px solid #3c8dbc;
@@ -35,7 +39,7 @@
     <section class="content">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-            <div class="col-md-12 card">
+            <div class=" card">
                 @if (session('success'))
                     <div class="alert alert-success" role="alert">
                         {{ session('success') }}
@@ -56,7 +60,24 @@
                     </div>
                 @endif
 
-                <a href="{{route('category.create')}}" class="btn btn-primary create">Create</a>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-8">
+                            <a href="{{route('category.create')}}" class="btn btn-primary create">Create</a>
+                            </div>
+                            <div class="col-md-4">
+                                <form action="{{route('category.search')}}" method="get">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="key" placeholder="Search for...">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="submit">Go!</button>
+                                        </span>
+                                    </div><!-- /input-group -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -81,6 +102,12 @@
                                 </td>
                             </tr>
                         @endforeach
+                        <tr>
+                            @if(!count($categories)>0)
+                                <td colspan="3"><h2>No categories</h2></td>
+                            @endif
+                        </tr>
+
                         </tbody>
                     </table>
                     {{$categories->links()}}
