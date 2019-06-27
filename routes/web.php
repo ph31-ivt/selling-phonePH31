@@ -31,6 +31,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
         Route::get('/edit/{id}', 'CategoryController@edit')->name('category.edit');
         Route::put('/edit/{id}', 'CategoryController@update')->name('category.update');
         Route::delete('/destroy/{id}', 'CategoryController@destroy')->name('category.destroy');
+        Route::get('/search', 'CategoryController@search')->name('category.search');
     });
 
     Route::prefix('products')->group(function () {
@@ -41,6 +42,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
         Route::get('/edit/{id}', 'ProductController@edit')->name('product.edit');
         Route::put('/edit/{id}', 'ProductController@update')->name('product.update');
         Route::delete('/destroy/{id}', 'ProductController@destroy')->name('product.destroy');
+        Route::get('/search', 'ProductController@search')->name('product.search');
     });
 
 });;

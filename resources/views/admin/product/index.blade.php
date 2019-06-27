@@ -56,7 +56,24 @@
                     </div>
                 @endif
 
-                <a href="{{route('product.create')}}" class="btn btn-primary create">Create</a>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <a href="{{route('product.create')}}" class="btn btn-primary create">Create</a>
+                            </div>
+                            <div class="col-md-4">
+                                <form action="{{route('product.search')}}" method="get">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="key" placeholder="Search for...">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="submit">Go!</button>
+                                        </span>
+                                    </div><!-- /input-group -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -94,6 +111,11 @@
                                 </td>
                             </tr>
                         @endforeach
+                        @if(!count($products)>0)
+                            <tr>
+                                <td colspan="7"><h2>No products</h2></td>
+                            </tr>
+                        @endif
                         </tbody>
                     </table>
                     {{$products->links()}}
