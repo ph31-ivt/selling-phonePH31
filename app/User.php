@@ -53,4 +53,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\User_Activation');
     }
+
+    public static function countUsers()
+    {
+        $count = count(\DB::table('users')->select('id')->get());
+        return $count;
+    }
 }
