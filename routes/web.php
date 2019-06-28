@@ -45,6 +45,17 @@ Route::prefix('admin')->middleware('admin')->group(function () {
         Route::get('/search', 'ProductController@search')->name('product.search');
     });
 
+    Route::prefix('users')->group(function () {
+        Route::get('/list', 'UserController@index')->name('user.index');
+        Route::get('/show/{id}', 'UserController@show')->name('user.show');
+        Route::get('/create', 'UserController@create')->name('user.create');
+        Route::post('/create', 'UserController@store')->name('user.store');
+        Route::get('/edit/{id}', 'UserController@edit')->name('user.edit');
+        Route::put('/edit/{id}', 'UserController@update')->name('user.update');
+        Route::delete('/destroy/{id}', 'UserController@destroy')->name('user.destroy');
+        Route::get('/search', 'UserController@search')->name('user.search');
+    });
+
 });;
 
 Auth::routes();

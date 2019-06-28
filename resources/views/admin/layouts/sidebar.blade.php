@@ -58,7 +58,10 @@
                     <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
                 </ul>
             </li>
-            <li><a href=""><i class="fa fa-user"></i> <span>Users</span></a></li>
+            <li><a href="{{route('user.index')}}"><i class="fa fa-user"></i> <span>Users</span>
+                    <span class="pull-right-container"><small class="label pull-right bg-green">{{\App\User::countUsers()}}</small></span>
+                </a>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->
