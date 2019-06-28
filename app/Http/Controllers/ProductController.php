@@ -126,7 +126,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name' => 'required|unique:products,id,'.$id.'|max:255',
+            'name' => 'required|unique:products,name,'.$id.'|max:255',
             'category_id' => 'required|numeric',
             'price' => 'required|numeric',
             'quantily' => 'required|numeric',

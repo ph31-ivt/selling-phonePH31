@@ -27,7 +27,7 @@ class UpdateUserPost extends FormRequest
         $id = $this->id;
         return [
             'name' => 'required|max:255',
-            'email' => 'required|unique:users,id,'.$id.'|max:255',
+            'email' => 'required|unique:users,email,'.$id.'|max:255',
             'password' => 'required|min:8|max:255',
             'tel' => 'max:11',
             'address' => 'max:255',
