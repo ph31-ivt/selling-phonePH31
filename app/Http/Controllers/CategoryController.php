@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\StoreCategoryPost;
+use App\Http\Requests\UpdateCategoryPost;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -34,12 +36,8 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryPost $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:categories|max:255',
-        ]);
-
         $data = $request->only('name');
         $category = Category::create($data);
 
@@ -76,11 +74,8 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryPost $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:categories,name,'.$id.'|max:255',
-        ]);
         $category = Category::findOrFail($id);
         $category->name = $request->name;
         $category->save();
