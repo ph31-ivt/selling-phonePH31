@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\StoreProductPost;
+use App\Http\Requests\UpdateProductPost;
 use App\Image;
 use App\Product;
 use App\Product_Detail;
@@ -37,33 +39,10 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductPost $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:products|max:255',
-            'category_id' => 'required|numeric',
-            'price' => 'required|numeric',
-            'quantily' => 'required|numeric',
-
-            'screen' => 'nullable|max:255',
-            'os' => 'nullable|max:255',
-            'camera' => 'nullable|max:255',
-            'font_camera' => 'nullable|max:255',
-            'cpu' => 'nullable|max:255',
-            'gpu' => 'nullable|max:255',
-            'ram' => 'nullable|max:255',
-            'memory' => 'nullable|max:255',
-            'sim' => 'nullable|max:255',
-            'Battery_capacity' => 'nullable|max:255',
-            'describe' => 'nullable',
-        ]);
-        $product = new Product();
-        $product->name = $request->name;
-        $product->category_id = $request->category_id;
-        $product->price = $request->price;
-        $product->quantily = $request->quantily;
-        $product->describe = $request->describe;
-        $product->save();
+        $data = $request->only('name','category_id','price','quantily','describe');
+        $product = Product::create($data);
 
         $product_detail = new Product_Detail();
         $product_detail->product_id = $product->id;
@@ -123,26 +102,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductPost $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:products,name,'.$id.'|max:255',
-            'category_id' => 'required|numeric',
-            'price' => 'required|numeric',
-            'quantily' => 'required|numeric',
-
-            'screen' => 'nullable|max:255',
-            'os' => 'nullable|max:255',
-            'camera' => 'nullable|max:255',
-            'font_camera' => 'nullable|max:255',
-            'cpu' => 'nullable|max:255',
-            'gpu' => 'nullable|max:255',
-            'ram' => 'nullable|max:255',
-            'memory' => 'nullable|max:255',
-            'sim' => 'nullable|max:255',
-            'Battery_capacity' => 'nullable|max:255',
-            'describe' => 'nullable'
-        ]);
         $product = Product::findOrFail($id);
         $product->name = $request->name;
         $product->category_id = $request->category_id;

@@ -39,7 +39,6 @@ class UserController extends Controller
      */
     public function store(StoreUserPost $request)
     {
-//        $validated = $request->validated();
         $data = $request->only('name','email','password','tel','address','active');
         $user = User::create($data);
         $user->update(['password'=>Hash::make($user->password)]);
