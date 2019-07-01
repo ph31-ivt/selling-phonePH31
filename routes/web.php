@@ -14,8 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/test', function () {
-    return view('admin.index');
+Route::get('/homepages', function () {
+    return view('indexh');
 });
 
 Route::prefix('admin')->middleware('admin')->group(function () {
