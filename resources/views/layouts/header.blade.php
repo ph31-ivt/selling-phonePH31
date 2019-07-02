@@ -96,16 +96,18 @@
     {{--        <nav class="navbar navbar-expand-md navbar-light navbar-laravel row content_header_three">--}}
     <ul class="nav row content_header_three justify-content-center">
         <li class="nav-item"><a href="" class="nav-link">Trang chủ</a></li>
-        <li class="nav-item"><a href="" class="nav-link">Giới thiệu</a></li>
+        <li class="nav-item"><a href="#intro" class="nav-link">Giới thiệu</a></li>
         <li class="nav-item dropdown">
             <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sản phẩm</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                @foreach($categories as $category)
+                    @if(count($category->products)>0)
+                    <a class="dropdown-item" href="#">{!! $category->name !!}</a>
+                    @endif
+                @endforeach
             </div>
         </li>
-        <li class="nav-item"><a href="" class="nav-link">Liên hệ</a></li>
+        <li class="nav-item"><a href="#contact" class="nav-link">Liên hệ</a></li>
     </ul>
     {{--        </nav>--}}
 </div>

@@ -21,6 +21,8 @@ Route::get('/product/{id}', 'IndexController@productDetail')->name('productDetai
 Route::get('/cart', 'CartController@getCart')->name('getCart');
 Route::post('/addCart/{id}', 'CartController@addCart')->name('addCart');
 Route::get('/removeCart/{id}','CartController@removeCart')->where('id','[0-9]+')->name('removeCart');
+Route::get('/orderConfirm', 'CartController@orderConfirm')->name('orderConfirm');
+Route::post('/orderPay', 'CartController@orderPay')->name('orderPay');
 
 Route::prefix('admin')->middleware('admin')->group(function () {
 

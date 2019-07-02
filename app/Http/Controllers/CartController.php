@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
+use App\Order_Detail;
 use App\Product;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
@@ -27,5 +29,51 @@ class CartController extends Controller
     {
         \Cart::remove($id);
         return redirect()->route('getCart');
+    }
+
+    public function orderConfirm()
+    {
+        $cart_contents = \Cart::getContent();
+        $total = \Cart::getTotal();
+        return view('orderConfirm', compact(['cart_contents','total']));
+    }
+
+    public function orderPay(Request $request)
+    {
+        $order = new Order();
+        $order->user_id = auth()->user()->id;
+        $order->order_date = date('y-m-d');
+        $order->name = $request->name;
+        $order->tel = $request->tel;
+        $order->address = $request->address;
+        $order->total = \Cart::getTotal();
+        $order->status = 1;
+        $order->save();
+
+        $cart_contents = \Cart::getContent();
+        foreach ($cart_contents as $cart)
+        {
+            $order_detail = new Order_Detail();
+            $order_detail->order_id = $order->id;
+            $order_detail->product_id = $cart->id;
+            $order_detail->quantily = $cart->quantity;
+            $order_detail->price = $cart->price;
+            $order_detail->total_detail = $cart->price * $cart->quantity;
+            $order_detail->save();
+
+            $product = Product::findOrFail($cart->id);
+            if ($product->quantily < $cart->quantity)
+            {
+                $order->delete();
+                return redirect()->route('getCart')->with('error', 'Ordering fail. '.$product->name.' not enough quantity !' );
+            }
+        }
+        foreach($cart_contents as $cart){
+            $product = Product::findOrFail($cart->id);
+            $product->quantily = $product->quantily - $cart->quantity;
+            $product->save();
+        }
+        \Cart::clear();
+        return redirect()->route('getCart')->with('success','Đặt hàng thành công!');
     }
 }
