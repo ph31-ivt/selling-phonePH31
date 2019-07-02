@@ -173,7 +173,11 @@
                             <div class="product-image4">
                                 <a href="#">
                                     <img class="pic-1" src="{!! asset('storage/'.$product->images[0]->url) !!}" height="811">
-                                    <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
+                                    @if(isset($product->images[1]->url))
+                                        <img class="pic-2" src="{!! asset('storage/'.$product->images[1]->url) !!}" height="811">
+                                    @else
+                                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
+                                    @endif
                                 </a>
                                 <ul class="social">
                                     <li><a href="{!! route('productDetail',$product->id) !!}" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
@@ -191,8 +195,8 @@
                                         </form>
                                     </li>
                                 </ul>
-                                <span class="product-new-label">New</span>
-                                <span class="product-discount-label">-10%</span>
+{{--                                <span class="product-new-label">New</span>--}}
+{{--                                <span class="product-discount-label">-10%</span>--}}
                             </div>
                             <div class="product-content">
                                 <h3 class="title"><a href="#">{!! $product->name !!}</a></h3>
