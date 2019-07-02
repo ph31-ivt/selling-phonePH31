@@ -82,9 +82,9 @@
                         </li>
                     @endguest
                     <li class="nav-item">
-                        <a class="nav-link no-hover" href="">
+                        <a class="nav-link no-hover" href="{!! route('getCart') !!}">
                             <i class="fas fa-shopping-cart" style="color: #ffffff"></i>
-                            <sub class="total">2</sub>
+                            <sub class="total">{!! \Cart::getContent()->count() !!}</sub>
                         </a>
                     </li>
                 </ul>

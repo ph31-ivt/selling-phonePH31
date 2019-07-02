@@ -178,7 +178,18 @@
                                 <ul class="social">
                                     <li><a href="{!! route('productDetail',$product->id) !!}" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
                                     <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                                    <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li>
+                                        <a href="#" data-tip="Add to Cart"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('addCart-form-{{$product->id}}').submit();"
+                                        >
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </a>
+                                        <form action="{!! route('addCart',$product->id) !!}" id="addCart-form-{{$product->id}}" method="post">
+                                            @csrf
+{{--                                            <button type="submit" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></button>--}}
+                                        </form>
+                                    </li>
                                 </ul>
                                 <span class="product-new-label">New</span>
                                 <span class="product-discount-label">-10%</span>

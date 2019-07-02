@@ -1,38 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <style>
-        #name {
-            color: #333;
-            font-weight: 700;
-            font-size: 26px;
-            text-transform: uppercase;
-            font-family: 'Roboto', sans-serif !important;
-        }
-
-        .item_price {
-            color: #575757;
-            font-size: 36px;
-            font-weight: 700;
-            font-family: 'Roboto', sans-serif !important;
-            margin: 0;
-            padding: 0;
-        }
-
-        .rating1 i {
-            color: #fbff00;
-            margin-bottom: 0.3em;
-        }
-
-        #qty {
-            font-weight: bold;
-            cursor: pointer;
-            position: relative;
-        }
-
-        #qty span {
-            padding-right: 1em;
-        }
-    </style>
+    <link rel="stylesheet" href="{!! asset('front_end/css/product_detail.css') !!}">
     <div class="row mt-4">
         <div class="col-md-9">
             <div class="row">
@@ -81,31 +49,6 @@
                         (12)
                     </div>
                     <hr>
-                    <style>
-                        #qty{
-                            width: 100%;
-                            margin: 20px 0px;
-                        }
-                        #qty P{
-                            margin-bottom: 20px;
-                        }
-                        #qty input{
-                            width: 50px;
-                            text-align: center;
-                            height: 35px;
-                        }
-                        #qty button{
-                            background-color: #ffffff;
-                            border: none;
-                        }
-                        #qty button i{
-                            font-size: 20px;
-                        }
-                        #qty p
-                        {
-                            display: inline-table;
-                        }
-                    </style>
                     <div id="qty">
                         <P>Số Lượng:</P>
                         <button type="button" id="reduction"><i class="far fa-minus-square"></i></button>
@@ -144,31 +87,6 @@
                 </div>
             </div>
             <div class="row mt-4 p-0 m-0" >
-                <style>
-                    pre, code {
-                        font-family: "Times New Roman";
-                        font-size: 17px;
-                    }
-                    pre {
-                        overflow: auto;
-                        background-color: #ffffff;
-                    }
-                    pre > code {
-                        display: block;
-                        padding: 1rem;
-                        word-wrap: normal;
-                    }
-                    pre > code >p
-                    {
-                        display: inline;
-                        word-wrap: normal;
-                    }
-                    figcaption{
-                        font-size: 19px;
-                        font-weight: bold;
-                        cursor: pointer;
-                    }
-                </style>
                 <div class="">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs">
@@ -203,41 +121,6 @@
             </div>
         </div>
         <div class="col-md-3">
-            <style>
-                .block-note-product {
-                    list-style-type: none;
-                    margin: 0;
-                    padding: 0;
-                    width: 100%;
-                }
-
-                .block-note-product li {
-                    padding: 1em 1em;
-                    border-bottom: 1px solid #eff0f5;
-                    width: 100%;
-                }
-
-                .block-note-product li label {
-                    color: #838282;
-                }
-
-                .block-note-product li .xem-chi-tiet {
-                    color: #000000;
-                    text-decoration: none;
-                }
-
-                .banner {
-                    margin: 0;
-                    padding: 0;
-                    width: 100%;
-                }
-
-                .banner img {
-                    margin: 0.4em 0;
-                    padding: 0;
-                    width: 100%;
-                }
-            </style>
             <div class="" style="background-color: #fafafa">
                 <ul class="block-note-product">
                     <li>
