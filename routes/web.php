@@ -14,9 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/homepages', function () {
-    return view('indexh');
-});
+
+Route::get('/homepages', 'IndexController@index')->name('index');
+Route::get('/product/{id}', 'IndexController@productDetail')->name('productDetail');
 
 Route::prefix('admin')->middleware('admin')->group(function () {
 
