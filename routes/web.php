@@ -18,6 +18,10 @@ Route::get('/', function () {
 Route::get('/homepages', 'IndexController@index')->name('index');
 Route::get('/product/{id}', 'IndexController@productDetail')->name('productDetail');
 
+Route::get('/cart', 'CartController@getCart')->name('getCart');
+Route::post('/addCart/{id}', 'CartController@addCart')->name('addCart');
+Route::get('/removeCart/{id}','CartController@removeCart')->where('id','[0-9]+')->name('removeCart');
+
 Route::prefix('admin')->middleware('admin')->group(function () {
 
     Route::get('/dashboard', function () {
