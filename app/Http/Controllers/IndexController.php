@@ -10,7 +10,7 @@ class IndexController extends Controller
     public function index()
     {
         $products = Product::take(6)->get();
-        return view('indexh',compact('products'));
+        return view('index',compact('products'));
     }
 
     public function productDetail($id)
