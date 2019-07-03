@@ -19,6 +19,7 @@ class UserTableSeeder extends Seeder
                 'email'=>'hovannhan.php@gmail.com',
                 'password'=>bcrypt('123123123'),
                 'user_type'=>0,
+                'active'=>1,
                 'created_at'=>$currentTime,
                 'updated_at'=>$currentTime
             ],
