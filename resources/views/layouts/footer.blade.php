@@ -2,7 +2,7 @@
     <div class="footer-content-one row">
         <div class="col-md-4">
             <h4 class="title" id="intro">About the company</h4>
-            <p>bookstore.com nhận đặt hàng trực tuyến và giao hàng tận nơi. KHÔNG hỗ trợ đặt mua và nhận hàng trực tiếp tại văn phòng cũng như tất cả Hệ Thống Fahasa trên toàn quốc.</p>
+            <p>CellPhone.com nhận đặt hàng trực tuyến và giao hàng tận nơi. KHÔNG hỗ trợ đặt mua và nhận hàng trực tiếp tại văn phòng cũng như tất cả Hệ Thống trên toàn quốc.</p>
         </div>
         <div class="col-md-2">
             <h4 class="title">Quick link</h4>

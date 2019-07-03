@@ -12,14 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/index');
 });
 
-Route::get('/homepages', 'IndexController@index')->name('index');
+Route::get('/index', 'IndexController@index')->name('index');
 Route::get('/product/{id}', 'IndexController@productDetail')->name('productDetail');
 
 Route::get('/cart', 'CartController@getCart')->name('getCart');
 Route::post('/addCart/{id}', 'CartController@addCart')->name('addCart');
+Route::post('/addCartOne', 'CartController@addcartOne')->name('addcartOne');
+Route::post('/updateCart', 'CartController@updateCart')->name('updateCart');
 Route::get('/removeCart/{id}','CartController@removeCart')->where('id','[0-9]+')->name('removeCart');
 Route::get('/orderConfirm', 'CartController@orderConfirm')->name('orderConfirm');
 Route::post('/orderPay', 'CartController@orderPay')->name('orderPay');
