@@ -14,7 +14,7 @@ class CartController extends Controller
     {
         $cart_contents = \Cart::getContent();
         $total = \Cart::getTotal();
-        return view('cart', compact(['cart_contents','total']));
+        return view('carts', compact(['cart_contents','total']));
     }
 
     public function addCart(Request $request, $id)

@@ -17,7 +17,7 @@
 
             @if($cart_contents->count()==0)
                 <div class="row cart-content-status">
-                   <p>không có sản phẩm nào trong giỏi hàng <a href="{!! route('index') !!}" class="btn btn-danger">quay lại trang chủ</a></p>
+                    <p>không có sản phẩm nào trong giỏi hàng <a href="{!! route('index') !!}" class="btn btn-danger">quay lại trang chủ</a></p>
                 </div>
             @else
                 <div class="row cart-content-top">
@@ -55,47 +55,7 @@
                                     display: inline-table;
                                 }
                             </style>
-{{--                            <script src="https://code.jquery.com/jquery-3.3.1.js"></script>--}}
-{{--                            <script type="text/javascript">--}}
-{{--                                $(document).ready(function(){--}}
-                                    {{--$('#increase-{!! $cart->id !!}').click(function(){--}}
-                                    {{--    var id = $('input[name="id_product-{!! $cart->id !!}"]').val();--}}
-                                    {{--    var token= $('input[name="_token"]').val();--}}
-                                    {{--    var qty = $('input[name="qty-{!! $cart->id !!}"]').val();--}}
-                                    {{--    $.ajax({--}}
-                                    {{--        url:"{!! route('updateCart') !!}",--}}
-                                    {{--        type:"get",--}}
-                                    {{--        cahe:false,--}}
-                                    {{--        data:{"id":id,"quantity":qty},--}}
-                                    {{--        success:function(data){--}}
-                                    {{--            if(data==1){--}}
-                                    {{--                location.reload();--}}
-                                    {{--                alert("Tăng giỏi hàng thành công!");--}}
 
-                                    {{--            }--}}
-                                    {{--        }--}}
-                                    {{--    });--}}
-                                    {{--});--}}
-                                    {{--$('#reduction-{!! $cart->id !!}').click(function(){--}}
-                                    {{--    var id = $('input[name="id_product-{!! $cart->id !!}"]').val();--}}
-                                    {{--    var token= $('input[name="_token"]').val();--}}
-                                    {{--    var qty = $('input[name="qty-{!! $cart->id !!}"]').val();--}}
-                                    {{--    $.ajax({--}}
-                                    {{--        url:"{!! route('updateCart') !!}",--}}
-                                    {{--        type:"get",--}}
-                                    {{--        cahe:false,--}}
-                                    {{--        data:{"id":id,"quantity":qty},--}}
-                                    {{--        success:function(data){--}}
-                                    {{--            if(data==1){--}}
-                                    {{--                location.reload();--}}
-                                    {{--                alert("Giảm giỏi hàng thành công!");--}}
-
-                                    {{--            }--}}
-                                    {{--        }--}}
-                                    {{--    });--}}
-                                    {{--});--}}
-{{--                                });--}}
-{{--                            </script>--}}
                             <button type="button" id="reduction-{!! $cart->id !!}"><i class="far fa-minus-square"></i></button>
                             @csrf
                             <input type="hidden" name ="id_product-{!! $cart->id !!}" value="{!! $cart->id !!}">
@@ -172,8 +132,8 @@
                     </div>
                 </div>
                 <div class="row cart-content-submit">
-                <a href="{!! route('orderConfirm') !!}" class="btn btn-danger">Xác nhận đơn hàng</a>
-            </div>
+                    <a href="{!! route('orderConfirm') !!}" class="btn btn-danger">Xác nhận đơn hàng</a>
+                </div>
             @endif
         </div>
     </div>
