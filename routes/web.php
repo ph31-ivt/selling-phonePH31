@@ -64,6 +64,17 @@ Route::prefix('admin')->middleware('admin')->group(function () {
         Route::get('/search', 'UserController@search')->name('user.search');
     });
 
+    Route::prefix('orders')->group(function () {
+        Route::get('/list', 'OrderController@index')->name('order.index');
+        Route::get('/show/{id}', 'OrderController@show')->name('order.show');
+        Route::get('/create', 'OrderController@create')->name('order.create');
+        Route::post('/create', 'OrderController@store')->name('order.store');
+        Route::get('/edit/{id}', 'OrderController@edit')->name('order.edit');
+        Route::put('/edit/{id}', 'OrderController@update')->name('order.update');
+        Route::delete('/destroy/{id}', 'OrderController@destroy')->name('order.destroy');
+        Route::get('/search', 'OrderController@search')->name('order.search');
+    });
+
 });;
 
 Auth::routes();

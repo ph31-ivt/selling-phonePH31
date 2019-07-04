@@ -71,51 +71,53 @@
                                         var qty = parseInt($("#quaty-{!! $cart->id !!}").val());
                                         if(qty===1){
                                             $("#quaty-{!! $cart->id !!}").val(1);
+                                            alert("Số lượng phải lớn hơn hoặc bằng 1");
                                         }
                                         else {
                                             $("#quaty-{!! $cart->id !!}").val(qty-1);
-                                        }
-                                        var id = $('input[name="id_product-{!! $cart->id !!}"]').val();
-                                        var token= $('input[name="_token"]').val();
-                                        var qtys = $('input[name="qty-{!! $cart->id !!}"]').val();
-                                        $.ajax({
-                                            url:"{!! route('updateCart') !!}",
-                                            type:"post",
-                                            cahe:false,
-                                            data:{"_token":token,"id":id,"quantity":qtys},
-                                            success:function(data){
-                                                if(data==1){
-                                                    location.reload();
-                                                    alert("Giảm giỏi hàng thành công!");
+                                            var id = $('input[name="id_product-{!! $cart->id !!}"]').val();
+                                            var token= $('input[name="_token"]').val();
+                                            var qtys = $('input[name="qty-{!! $cart->id !!}"]').val();
+                                            $.ajax({
+                                                url:"{!! route('updateCart') !!}",
+                                                type:"post",
+                                                cahe:false,
+                                                data:{"_token":token,"id":id,"quantity":qtys},
+                                                success:function(data){
+                                                    if(data==1){
+                                                        location.reload();
+                                                        alert("Giảm giỏi hàng thành công!");
 
+                                                    }
                                                 }
-                                            }
-                                        });
+                                            });
+                                        }
                                     });
                                     $("#increase-{!! $cart->id !!}").click(function(){
                                         var qty = parseInt( $("#quaty-{!! $cart->id !!}").val());
                                         if(qty===5){
                                             $("#quaty-{!! $cart->id !!}").val(5);
+                                            alert("Số lượng phải nhỏ hơn hoặc bằng 5");
                                         }
                                         else{
                                             $("#quaty-{!! $cart->id !!}").val(qty+1);
-                                        }
-                                        var id = $('input[name="id_product-{!! $cart->id !!}"]').val();
-                                        var token= $('input[name="_token"]').val();
-                                        var qtys = $('input[name="qty-{!! $cart->id !!}"]').val();
-                                        $.ajax({
-                                            url:"{!! route('updateCart') !!}",
-                                            type:"post",
-                                            cahe:false,
-                                            data:{"_token":token,"id":id,"quantity":qtys},
-                                            success:function(data){
-                                                if(data==1){
-                                                    location.reload();
-                                                    alert("Tăng giỏi hàng thành công!");
+                                            var id = $('input[name="id_product-{!! $cart->id !!}"]').val();
+                                            var token= $('input[name="_token"]').val();
+                                            var qtys = $('input[name="qty-{!! $cart->id !!}"]').val();
+                                            $.ajax({
+                                                url:"{!! route('updateCart') !!}",
+                                                type:"post",
+                                                cahe:false,
+                                                data:{"_token":token,"id":id,"quantity":qtys},
+                                                success:function(data){
+                                                    if(data==1){
+                                                        location.reload();
+                                                        alert("Tăng giỏi hàng thành công!");
 
+                                                    }
                                                 }
-                                            }
-                                        });
+                                            });
+                                        }
                                     });
                                 });
                             </script>

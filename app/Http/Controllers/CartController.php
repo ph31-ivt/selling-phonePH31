@@ -49,7 +49,7 @@ class CartController extends Controller
             ));
         return 1;
         }
-        return 'Fail';
+        return 'Fails';
     }
 
     public function removeCart($id)

@@ -180,7 +180,7 @@
             <div class="container-fluid">
                 <div class="row mb-1 p-0" style="border-bottom: 2px solid #7d7d7d">
                     <div class="col-2 m-0 p-0">
-                        <h6 class="m-0" style="background-color: #ff1d15;color: #fff;width: 100%;height: 40px;line-height:40px;text-align: center">SẢN PHẨM MỚI</h6>
+                        <h6 class="m-0" style="background-color: #ff1d15;color: #fff;width: 100%;height: 40px;line-height:40px;text-align: center">SẢN PHẨM BÁN CHẠY</h6>
                     </div>
                     <div class="col-10 text-right mb-4">
                         <a href="">Xem thêm </a>
@@ -189,7 +189,7 @@
             </div>
             <div class="container-fluid pr-0 pl-0">
                 <div class="row">
-                    @foreach($products as $product)
+                    @foreach($product_hots as $product)
                         <div class="col-md-2">
                         <div class="product-grid4">
                             <div class="product-image4">
