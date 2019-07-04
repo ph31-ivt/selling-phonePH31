@@ -8,7 +8,8 @@ class Order extends Model
 {
     CONST pending = 1;
     CONST approved  = 2;
-    CONST shipper  = 3;
+    CONST shipping  = 3;
+    CONST cancel  = 4;
     //
     protected $fillable = [
         'user_id', 'order_date', 'name', 'tel', 'address' ,'total', 'status'
