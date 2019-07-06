@@ -28,5 +28,9 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer(
             ['admin.product.create','admin.product.edit','layouts.header','layouts.footer'], 'App\Http\ViewComposers\CategoriesComposer'
         );
+
+        View::composer(
+            ['admin.order.browse'], 'App\Http\ViewComposers\ShippersComposer'
+        );
     }
 }

@@ -64,9 +64,15 @@
     <section class="content">
         <!-- Small boxes (Stat box) -->
         <div class="row">
+
+            <h2 style="margin-top: 0;text-align: center;">ORDER DETAILS #{!! $order->id !!}</h2>
+            <hr style="margin: 0;">
+        </div>
+        <div class="row">
             <div class=" card">
 
                 <div class="container-fluid">
+
                     <div class="col-md-6 order_info">
                         <ul>
                             <li><p>Order id:</p> <span>#{!! $order->id !!}</span></li>
@@ -102,8 +108,8 @@
                             <th>ID</th>
                             <th>Image</th>
                             <th>Name</th>
-                            <th>Quantity</th>
                             <th>price</th>
+                            <th>Quantity</th>
                             <th>Amount</th>
                         </tr>
                         </thead>
@@ -113,14 +119,14 @@
                                 <td>{{$order_detail->id}}</td>
                                 <td><img src="{!! asset('storage/'.$order_detail->product->images[0]->url) !!}" alt="" width="60"></td>
                                 <td>{{$order_detail->product->name}}</td>
+                                <td>{{ number_format($order_detail->price)}} đ</td>
                                 <td>{{$order_detail->quantily}}</td>
-                                <td>{{$order_detail->price}}</td>
-                                <td>{{$order_detail->total_detail}}</td>
+                                <td>{{number_format($order_detail->total_detail)}} đ</td>
                             </tr>
                         @endforeach
                         <tr>
                             @if(!count($order->order_details)>0)
-                                <td colspan="3"><h2>No categories</h2></td>
+                                <td colspan="3"><h2>No order detail</h2></td>
                             @endif
                         </tr>
 

@@ -14,9 +14,9 @@
             display: inline-table;
         }
         .card .search{
-             margin-bottom: 0.8em;
-             display: inline-table;
-         }
+            margin-bottom: 0.8em;
+            display: inline-table;
+        }
         .card table, th, td{
             border: 1px solid #3c8dbc;
         }
@@ -75,7 +75,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-8">
-{{--                            <a href="{{route('order.create')}}" class="btn btn-primary create">Create</a>--}}
+                            {{--                            <a href="{{route('order.create')}}" class="btn btn-primary create">Create</a>--}}
                         </div>
                         <div class="col-md-4 search">
                             <form action="{{route('order.search')}}" method="get">
@@ -126,6 +126,51 @@
                                 <td>{{ date('d-m-Y',strtotime($order->order_date))}}</td>
                                 <td>
                                     <a href="{{route('order.show',$order->id)}}" class="btn btn-primary">Show</a>
+                                    |
+                                    <a href="" class="btn btn-danger" data-toggle="modal" data-target="#myModal-{{$order->id}}">Xử lý</a>
+                                    <!-- The Modal -->
+                                    <div class="modal fade" id="myModal-{{$order->id}}">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Xử lý đơn hàng số: {{$order->id}}</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+
+                                                <form action="{{route('order.processing',$order->id)}}" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <!-- Modal body -->
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="shipper_id" class="col-6">Chọn nhân viên giao đơn hàng:</label>
+                                                            <select name="shipper_id" id="shipper_id" class="form-control col-6" required>
+                                                                @foreach($shippers as $shipper)
+                                                                    <option value="{{$shipper->id}}">{{$shipper->name}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Xử lý</button>
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END Modal -->
+                                    |
+                                    <form action="{{route('order.destroy',$order->id)}}" method="post" style="display: inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-warning">Cancel</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

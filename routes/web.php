@@ -73,6 +73,15 @@ Route::prefix('admin')->middleware('admin')->group(function () {
         Route::put('/edit/{id}', 'OrderController@update')->name('order.update');
         Route::delete('/destroy/{id}', 'OrderController@destroy')->name('order.destroy');
         Route::get('/search', 'OrderController@search')->name('order.search');
+
+        Route::get('/processing', 'OrderController@getProcessing')->name('order.getProcessing');
+        Route::put('/processing/{id}', 'OrderController@processing')->name('order.processing');
+
+        Route::get('/export', 'OrderController@getExportOrder')->name('order.getExport');
+        Route::put('/export/{id}', 'OrderController@exportOrder')->name('order.export');
+
+        Route::get('/shipped', 'OrderController@getShippedOrder')->name('order.getShipped');
+        Route::put('/shipped/{id}', 'OrderController@shippedOrder')->name('order.shipped');
     });
 
 });;

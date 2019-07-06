@@ -12,6 +12,7 @@ class User extends Authenticatable
 
     CONST USER_ADMIN = 0;
     CONST USER_CUSTOMER = 1;
+    CONST USER_SHIPPER = 2;
     /**
      * The attributes that are mass assignable.
      *

@@ -86,4 +86,48 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function getProcessing()
+    {
+        $orders = Order::where('status','=',1)->paginate(5);
+        return view('admin.order.browse',compact('orders'));
+    }
+
+    public function processing(Request $request, $id)
+    {
+//        $id = $request->id;
+        $shipper_id = $request->shipper_id;
+        $order = Order::where('id','=',$id)
+            ->update(['status'=>2,'shipper_id'=>$shipper_id]);
+        return redirect()->back();
+
+    }
+
+    public function getExportOrder()
+    {
+        $orders = Order::where('status','=',2)->paginate(5);
+        return view('admin.order.export',compact('orders'));
+    }
+
+    public function exportOrder(Request $request, $id)
+    {
+        $order = Order::where('id','=',$id)
+            ->update(['status'=>3]);
+        return redirect()->back();
+
+    }
+
+    public function getShippedOrder()
+    {
+        $orders = Order::where('status','=',3)/*->where('shipper_id','=',auth()->user()->id)*/->paginate(5);
+        return view('admin.order.export',compact('orders'));
+    }
+
+    public function shippedOrder(Request $request, $id)
+    {
+        $order = Order::where('id','=',$id)
+            ->update(['status'=>3]);
+        return redirect()->back();
+
+    }
 }
