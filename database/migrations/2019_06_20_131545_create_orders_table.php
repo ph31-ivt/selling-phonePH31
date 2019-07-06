@@ -20,6 +20,10 @@ class CreateOrdersTable extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade');
             $table->dateTime('order_date');
+
+            $table->dateTime('order_delivery_date')->nullable();
+            $table->unsignedBigInteger('shipper_id')->nullable();
+
             $table->string('name');
             $table->string('tel',11);
             $table->string('address');

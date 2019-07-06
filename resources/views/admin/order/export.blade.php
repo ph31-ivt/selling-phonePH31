@@ -14,9 +14,9 @@
             display: inline-table;
         }
         .card .search{
-             margin-bottom: 0.8em;
-             display: inline-table;
-         }
+            margin-bottom: 0.8em;
+            display: inline-table;
+        }
         .card table, th, td{
             border: 1px solid #3c8dbc;
         }
@@ -75,7 +75,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-8">
-{{--                            <a href="{{route('order.create')}}" class="btn btn-primary create">Create</a>--}}
+                            {{--                            <a href="{{route('order.create')}}" class="btn btn-primary create">Create</a>--}}
                         </div>
                         <div class="col-md-4 search">
                             <form action="{{route('order.search')}}" method="get">
@@ -125,7 +125,12 @@
                                 </td>
                                 <td>{{ date('d-m-Y',strtotime($order->order_date))}}</td>
                                 <td>
-                                    <a href="{{route('order.show',$order->id)}}" class="btn btn-primary">Show</a>
+                                    <a href="{{route('order.show',$order->id)}}" class="btn btn-primary">Show</a> |
+                                    <form action="{!! route('order.export',$order->id) !!}" method="post" style="display: inline">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-warning">Export</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
