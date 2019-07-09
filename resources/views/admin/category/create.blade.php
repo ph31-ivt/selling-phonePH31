@@ -34,21 +34,26 @@
                             {{ session('error') }}
                         </div>
                     @endif
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+{{--                    @if ($errors->any())--}}
+{{--                        <div class="alert alert-danger">--}}
+{{--                            <ul>--}}
+{{--                                @foreach ($errors->all() as $error)--}}
+{{--                                    <li>{{ $error }}</li>--}}
+{{--                                @endforeach--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
 
                     <form action="{{route('category.store')}}" method="post" >
                         @csrf
-                        <div class="form-group">
-                            <label for="name">Name category:</label>
-                            <input type="text" class="form-control" name="name" required id="name">
+                        <div class="form-group row">
+                            <div class="col-md-12 @error('name') has-error @enderror">
+                                <label for="name">Name category:</label>
+                                <input type="text" class="form-control" @error('name') id="inputError" @enderror name="name" required id="name">
+                                @error('name')
+                                    <span class="help-block"><strong>{{$message}}</strong></span>
+                                @enderror
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Create</button>
                     </form>

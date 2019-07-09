@@ -117,11 +117,18 @@ class UserController extends Controller
                 ->orWhere('email','like','%'.$key.'%')
                 ->orWhere('tel','like','%'.$key.'%')
                 ->orWhere('address','like','%'.$key.'%')
-                ->paginate(5);
+                ->get();
 
-            return view('admin.user.index',compact('users'));
+            return view('admin.user.index',compact(['users','key']));
         }
         $users = User::paginate(5);
         return view('admin.user.index',compact('users'));
+    }
+
+    public function decentralization(Request $request,$id)
+    {
+        $user = User::where('id','=',$id)
+                ->update(['user_type'=>$request->user_type]);
+        return redirect()->back();
     }
 }

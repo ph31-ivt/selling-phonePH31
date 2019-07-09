@@ -110,7 +110,9 @@
 
                         </tbody>
                     </table>
-                    {{$categories->links()}}
+                    @if(!isset($key))
+                        {{$categories->links()}}
+                    @endif
                 </div>
             </div>
         </div>
