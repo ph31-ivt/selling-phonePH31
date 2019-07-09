@@ -15,7 +15,8 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
-            <li class="active">Category</li>
+            <li><a href="#"><i class="fa fa-list"></i> Category</a></li>
+            <li class="active">Create</li>
         </ol>
     </section>
 
