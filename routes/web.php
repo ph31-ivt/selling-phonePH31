@@ -62,6 +62,8 @@ Route::prefix('admin')->middleware('admin')->group(function () {
         Route::put('/edit/{id}', 'UserController@update')->name('user.update');
         Route::delete('/destroy/{id}', 'UserController@destroy')->name('user.destroy');
         Route::get('/search', 'UserController@search')->name('user.search');
+
+        Route::post('/decentralization/{id}', 'UserController@decentralization')->name('user.decentralization');
     });
 
     Route::prefix('orders')->group(function () {

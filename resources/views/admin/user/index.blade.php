@@ -87,6 +87,7 @@
                             <th>email</th>
                             <th>Telephone</th>
                             <th>Address</th>
+                            <th>User type</th>
                             <th>Active</th>
                             <th></th>
                         </tr>
@@ -99,6 +100,15 @@
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->tel}}</td>
                                 <td>{{$user->address}}</td>
+                                <td>
+                                    @if($user->user_type == 0)
+                                        Admin
+                                    @elseif($user->user_type == 1)
+                                        Customer
+                                    @elseif($user->user_type == 2)
+                                        Shipper
+                                    @endif
+                                </td>
                                 <td style="text-align: center">
                                     @if($user->active == 1)
                                         <i class="fa fa-check-circle" style="color: #7bd556"></i>
@@ -107,12 +117,52 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{route('user.edit',$user->id)}}" class="btn btn-primary">Edit</a> |
-                                    <form action="{{route('user.destroy',$user->id)}}" method="post" style="display: inline">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
+                                    <a href="{{route('user.edit',$user->id)}}" class="btn btn-primary">Edit</a>
+
+                                    @if(!$user->user_type == 0)
+                                        |
+                                        <form action="{{route('user.destroy',$user->id)}}" method="post" style="display: inline">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                        |
+                                        <a href="" class="btn btn-warning" data-toggle="modal" data-target="#myModal-{{$user->id}}">Decentralization</a>
+                                        <!-- The Modal -->
+                                        <div class="modal fade" id="myModal-{{$user->id}}">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">User decentralization: #{{$user->id}}</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+
+                                                    <form action="{{route('user.decentralization',$user->id)}}" method="post">
+                                                    @csrf
+                                                    <!-- Modal body -->
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <select name="user_type" id="user_type" class="form-control">
+                                                                    <option value="1" @if($user->user_type == 1) selected @endif>Customer</option>
+                                                                    <option value="2" @if($user->user_type == 2) selected @endif>Shipped</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Modal footer -->
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-primary">Xử lý</button>
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END Modal -->
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -124,7 +174,9 @@
 
                         </tbody>
                     </table>
-                    {{$users->links()}}
+                    @if(!isset($key))
+                        {{$users->links()}}
+                    @endif
                 </div>
             </div>
         </div>

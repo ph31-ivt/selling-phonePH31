@@ -105,8 +105,8 @@ class CategoryController extends Controller
         if (!$key == '')
         {
             $categories = Category::where('id','like','%'.$key.'%')
-                        ->orWhere('name','like','%'.$key.'%')->paginate(5);
-            return view('admin.category.index',compact('categories'));
+                        ->orWhere('name','like','%'.$key.'%')->get();
+            return view('admin.category.index',compact(['categories','key']));
         }
         $categories = Category::paginate(5);
         return view('admin.category.index',compact('categories'));
