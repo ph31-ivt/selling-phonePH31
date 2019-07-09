@@ -31,7 +31,8 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
-            <li class="active">user</li>
+            <li><a href="#"><i class="fa fa-user"></i> User</a></li>
+            <li class="active">list</li>
         </ol>
     </section>
 
