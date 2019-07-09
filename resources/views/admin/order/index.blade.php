@@ -39,11 +39,32 @@
     <section class="content-header">
         <h1>
             Order
-            <small>list</small>
+            @if($status == 'A')
+                <small>list</small>
+            @elseif($status == 'B')
+                <small>Browse</small>
+            @elseif($status == 'C')
+                <small>Export</small>
+            @elseif($status == 'D')
+                <small>Shipped</small>
+            @elseif($status == 'E')
+                <small>Cancel</small>
+            @endif
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
-            <li class="active">Order</li>
+            <li><a href=""><i class="fa fa-shopping-cart"></i>Order</a></li>
+            @if($status == 'A')
+                <li  class="active"><a href="#">list</a></li>
+            @elseif($status == 'B')
+                <li  class="active"><a href="#">Browse</a></li>
+            @elseif($status == 'C')
+                <li  class="active"><a href="#">Export</a></li>
+            @elseif($status == 'D')
+                <li  class="active"><a href="#">Shipped</a></li>
+            @elseif($status == 'E')
+                <li  class="active"><a href="#">Cancel</a></li>
+            @endif
         </ol>
     </section>
 
@@ -80,7 +101,8 @@
                         <div class="col-md-4 search">
                             <form action="{{route('order.search')}}" method="get">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="key" placeholder="Search for...">
+                                    <input type="text" class="form-control" name="key" placeholder="Search for..." required>
+                                    <input type="hidden" name="status" value="{!! $status !!}">
                                     <span class="input-group-btn">
                                             <button class="btn btn-default" type="submit">Go!</button>
                                         </span>
@@ -91,53 +113,21 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Telephone</th>
-                            <th>Address</th>
-                            <th>Total</th>
-                            <th>Status</th>
-                            <th>Order date</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($orders as $order)
-                            <tr>
-                                <td>{{$order->id}}</td>
-                                <td>{{$order->name}}</td>
-                                <td>{{$order->tel}}</td>
-                                <td>{{$order->address}}</td>
-                                <td>{{$order->total}}</td>
-                                <td class="status">
-                                    @if($order->status == 1)
-                                        <p class="pending">PENDING</p>
-                                    @elseif($order->status == 2)
-                                        <p class="approved">APPROVED</p>
-                                    @elseif($order->status == 3)
-                                        <p class="shipping">SHIPPING</p>
-                                    @elseif($order->status == 4)
-                                        <p class="cancel">CANCEL</p>
-                                    @endif
-                                </td>
-                                <td>{{ date('d-m-Y',strtotime($order->order_date))}}</td>
-                                <td>
-                                    <a href="{{route('order.show',$order->id)}}" class="btn btn-primary">Show</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        <tr>
-                            @if(!count($orders)>0)
-                                <td colspan="3"><h2>No orders</h2></td>
-                            @endif
-                        </tr>
+                        @if($status == 'A')
+                            @include('admin.order.partials.list')
+                        @elseif($status == 'B')
+                            @include('admin.order.partials.browse')
+                        @elseif($status == 'C')
+                            @include('admin.order.partials.export')
+                        @elseif($status == 'D')
+                            @include('admin.order.partials.shipped')
+                        @elseif($status == 'E')
+                            @include('admin.order.partials.cancel')
+                        @endif
 
-                        </tbody>
-                    </table>
+                    @if(!isset($key))
                     {{$orders->links()}}
+                    @endif
                 </div>
             </div>
         </div>

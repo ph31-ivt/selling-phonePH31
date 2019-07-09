@@ -15,30 +15,9 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::paginate(5);
-        return view('admin.order.index',compact('orders'));
+        $status = 'A';
+        return view('admin.order.index',compact(['orders','status']));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
     /**
      * Display the specified resource.
      *
@@ -53,44 +32,72 @@ class OrderController extends Controller
         return view('admin.order.show',compact('order'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function search(Request $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $status = $request->status;
+        $key = $request->key;
+        if (!$key == '' && $status == 'A')
+        {
+            $orders = Order::where('id','like','%'.$key.'%')
+                    ->orwhere('name','like','%'.$key.'%')
+                    ->orwhere('tel','like','%'.$key.'%')
+                    ->orwhere('address','like','%'.$key.'%')
+                    ->orwhere('total','like','%'.$key.'%')
+                    ->orwhere('order_date','like','%'.$key.'%')
+                    ->get();
+            return view('admin.order.index',compact(['orders','key','status']));
+        }
+        if (!$key == '' && $status == 'B')
+        {
+            $orders = Order::where('id','like','%'.$key.'%')->where('status','=',1)
+                ->orwhere('name','like','%'.$key.'%')->where('status','=',1)
+                ->orwhere('tel','like','%'.$key.'%')->where('status','=',1)
+                ->orwhere('address','like','%'.$key.'%')->where('status','=',1)
+                ->orwhere('total','like','%'.$key.'%')->where('status','=',1)
+                ->orwhere('order_date','like','%'.$key.'%')->where('status','=',1)
+                ->get();
+            return view('admin.order.index',compact(['orders','key','status']));
+        }
+        if (!$key == '' && $status == 'C')
+        {
+            $orders = Order::where('id','like','%'.$key.'%')->where('status','=',2)
+                ->orwhere('name','like','%'.$key.'%')->where('status','=',2)
+                ->orwhere('tel','like','%'.$key.'%')->where('status','=',2)
+                ->orwhere('address','like','%'.$key.'%')->where('status','=',2)
+                ->orwhere('total','like','%'.$key.'%')->where('status','=',2)
+                ->orwhere('order_date','like','%'.$key.'%')->where('status','=',2)
+                ->get();
+            return view('admin.order.index',compact(['orders','key','status']));
+        }
+        if (!$key == '' && $status == 'D')
+        {
+            $orders = Order::where('id','like','%'.$key.'%')->where('status','=',3)
+                ->orwhere('name','like','%'.$key.'%')->where('status','=',3)
+                ->orwhere('tel','like','%'.$key.'%')->where('status','=',3)
+                ->orwhere('address','like','%'.$key.'%')->where('status','=',3)
+                ->orwhere('total','like','%'.$key.'%')->where('status','=',3)
+                ->orwhere('order_date','like','%'.$key.'%')->where('status','=',3)
+                ->get();
+            return view('admin.order.index',compact(['orders','key','status']));
+        }
+        if (!$key == '' && $status == 'E')
+        {
+            $orders = Order::where('id','like','%'.$key.'%')->where('status','=',5)
+                ->orwhere('name','like','%'.$key.'%')->where('status','=',5)
+                ->orwhere('tel','like','%'.$key.'%')->where('status','=',5)
+                ->orwhere('address','like','%'.$key.'%')->where('status','=',5)
+                ->orwhere('total','like','%'.$key.'%')->where('status','=',5)
+                ->orwhere('order_date','like','%'.$key.'%')->where('status','=',5)
+                ->get();
+            return view('admin.order.index',compact(['orders','key','status']));
+        }
     }
 
     public function getProcessing()
     {
         $orders = Order::where('status','=',1)->paginate(5);
-        return view('admin.order.browse',compact('orders'));
+        $status = 'B';
+        return view('admin.order.index',compact(['orders','status']));
     }
 
     public function processing(Request $request, $id)
@@ -106,7 +113,8 @@ class OrderController extends Controller
     public function getExportOrder()
     {
         $orders = Order::where('status','=',2)->paginate(5);
-        return view('admin.order.export',compact('orders'));
+        $status = 'C';
+        return view('admin.order.index',compact(['orders','status']));
     }
 
     public function exportOrder(Request $request, $id)
@@ -120,14 +128,36 @@ class OrderController extends Controller
     public function getShippedOrder()
     {
         $orders = Order::where('status','=',3)/*->where('shipper_id','=',auth()->user()->id)*/->paginate(5);
-        return view('admin.order.export',compact('orders'));
+        $status = 'D';
+        return view('admin.order.index',compact(['orders','status']));
     }
 
     public function shippedOrder(Request $request, $id)
     {
         $order = Order::where('id','=',$id)
-            ->update(['status'=>3]);
+            ->update(['status'=>4,'order_delivery_date'=>date('Y-m-d')]);
         return redirect()->back();
 
+    }
+
+    public function cancel($id)
+    {
+        $order = Order::where('id','=',$id)
+            ->update(['status'=>5]);
+        return redirect()->back()->with('success','Cancel order successfully!');
+    }
+
+    public function getCancel()
+    {
+        $orders = Order::where('status','=',5)->paginate(5);
+        $status = 'E';
+        return view('admin.order.index',compact(['orders','status']));
+    }
+
+    public function restoreOrders($id)
+    {
+        $order = Order::where('id','=',$id)
+            ->update(['status'=>1]);
+        return redirect()->back();
     }
 }

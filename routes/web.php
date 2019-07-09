@@ -67,12 +67,11 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::prefix('orders')->group(function () {
         Route::get('/list', 'OrderController@index')->name('order.index');
         Route::get('/show/{id}', 'OrderController@show')->name('order.show');
-        Route::get('/create', 'OrderController@create')->name('order.create');
-        Route::post('/create', 'OrderController@store')->name('order.store');
-        Route::get('/edit/{id}', 'OrderController@edit')->name('order.edit');
-        Route::put('/edit/{id}', 'OrderController@update')->name('order.update');
-        Route::delete('/destroy/{id}', 'OrderController@destroy')->name('order.destroy');
         Route::get('/search', 'OrderController@search')->name('order.search');
+
+        Route::delete('/cancel/{id}', 'OrderController@cancel')->name('order.cancel');
+        Route::get('/cancel', 'OrderController@getCancel')->name('order.getCancel');
+        Route::post('/cancel/{id}', 'OrderController@restoreOrders')->name('order.restore');
 
         Route::get('/processing', 'OrderController@getProcessing')->name('order.getProcessing');
         Route::put('/processing/{id}', 'OrderController@processing')->name('order.processing');
