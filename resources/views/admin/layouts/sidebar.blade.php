@@ -54,6 +54,7 @@
                     <li><a href="{!! route('order.getProcessing') !!}"><i class="fa fa-circle-o"></i> Browse orders</a></li>
                     <li><a href="{!! route('order.getExport') !!}"><i class="fa fa-circle-o"></i>Export order</a></li>
                     <li><a href="{!! route('order.getShipped') !!}"><i class="fa fa-circle-o"></i> shipped</a></li>
+                    <li><a href="{!! route('order.getCancel') !!}"><i class="fa fa-circle-o"></i> Cancel</a></li>
                 </ul>
             </li>
             <li><a href="{{route('user.index')}}"><i class="fa fa-user"></i> <span>Users</span>

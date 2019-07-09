@@ -30,7 +30,7 @@ class ComposerServiceProvider extends ServiceProvider
         );
 
         View::composer(
-            ['admin.order.browse'], 'App\Http\ViewComposers\ShippersComposer'
+            ['admin.order.index'], 'App\Http\ViewComposers\ShippersComposer'
         );
     }
 }
