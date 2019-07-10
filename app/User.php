@@ -59,7 +59,7 @@ class User extends Authenticatable
 
     public static function countUsers()
     {
-        $count = count(\DB::table('users')->select('id')->get());
+        $count = count(User::get('id'));
         return $count;
     }
 }

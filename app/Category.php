@@ -20,7 +20,7 @@ class Category extends Model
 
     public static function countCategory()
     {
-        $count = count(\DB::table('categories')->select('id')->get());
+        $count = count(Category::get('id'));
         return $count;
     }
 }
