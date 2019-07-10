@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-    	$orders = Order::all();
+    	$orders = Order::orderBy('order_date','desc')->take(4)->get();
     	$count_order_new = Order::where('status','=',1)->count();
     	$count_user_register = User::where('user_type','=',1)->where('active','=',1)->count();
     	$count_comment = Comment::count();

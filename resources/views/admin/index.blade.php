@@ -108,7 +108,7 @@
                   <tbody>
                     @foreach($orders as $order)
                       <tr>
-                        <td><a href="#">{!! $order->id !!}</a></td>
+                        <td><a href="{!! route('order.show',$order->id) !!}">{!! $order->id !!}</a></td>
                         <td>
                             @foreach($order->order_details as $detail)
                             {!! $detail->product->name !!} <br>
@@ -139,7 +139,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-              <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+              <a href="{!! route('order.index') !!}" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
             </div>
             <!-- /.box-footer -->
           </div>
