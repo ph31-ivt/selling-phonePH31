@@ -40,7 +40,7 @@ class Product extends Model
 
     public static function countProduct()
     {
-        $count = count(\DB::table('products')->select('id')->get());
+        $count = count(Product::get('id'));
         return $count;
     }
 }
