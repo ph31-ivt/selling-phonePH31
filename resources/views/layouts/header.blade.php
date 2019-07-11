@@ -18,17 +18,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
-                <form action="" method="get" class="navbar-nav col-md-7 my-2 my-lg-0 ml-auto">
-                    @csrf
+                <form action="{{route('search.index')}}" method="get" role="search" class="typeahead navbar-nav col-md-7 my-2 my-lg-0 ml-auto">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="key" placeholder="Search for...">
-                        <span class="input-group-btn">
-                                <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
-                            </span>
+                        <input type="search" required class="form-control search-input custom-width" name="key" placeholder="Search for..." autocomplete="off">
+                        <span class="input-group-btn" style="position: absolute;left: 26em;">
+                            <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
+                        </span>
                     </div>
                 </form>
 
-                <!-- Right Side Of Navbar -->
+              <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto login">
                     <!-- Authentication Links -->
                     @guest

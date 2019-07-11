@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Comment;
 
 class CommentController extends Controller
 {
@@ -32,9 +33,19 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $product_id)
     {
-        //
+        if (\auth::check()){
+            $comment = new Comment;
+            $comment->content = $request->contents;
+            $comment->product_id = $product_id;
+            $comment->user_id = \auth()->user()->id;
+            $comment->date_time = date('Y-m-d H:i:s');
+            $comment->save();
+            return redirect()->route('productDetail',$product_id);
+        } else {
+            return redirect()->route('login')->with('error', 'Please login before comment!');
+        }
     }
 
     /**
@@ -79,6 +90,10 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        if (auth()->user()->id == $comment->user_id) {
+            $comment->delete();
+            return redirect()->back();
+        }
     }
 }

@@ -199,7 +199,7 @@
 {{--                                <span class="product-discount-label">-10%</span>--}}
                             </div>
                             <div class="product-content">
-                                <h3 class="title"><a href="#">{!! $product->name !!}</a></h3>
+                                <h3 class="title"><a href="{!! route('productDetail',$product->id) !!}">{!! $product->name !!}</a></h3>
                                 <div class="price">
                                     {!! number_format($product->price) !!} đ
 {{--                                    <span>$16.00</span>--}}
