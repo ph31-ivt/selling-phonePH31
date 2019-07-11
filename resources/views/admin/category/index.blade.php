@@ -31,7 +31,8 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
-            <li class="active">Category</li>
+            <li><a href="#"><i class="fa fa-list"></i> Category</a></li>
+            <li class="active">List</li>
         </ol>
     </section>
 
@@ -64,6 +65,7 @@
                         <div class="row">
                             <div class="col-md-8">
                             <a href="{{route('category.create')}}" class="btn btn-primary create">Create</a>
+                            <span class="" style="font-size: 1em;margin-left: 2em;">filters:</span><span> <a href="">id</a></span>
                             </div>
                             <div class="col-md-4">
                                 <form action="{{route('category.search')}}" method="get">
@@ -110,7 +112,9 @@
 
                         </tbody>
                     </table>
-                    {{$categories->links()}}
+                    @if(!isset($key))
+                        {{$categories->links()}}
+                    @endif
                 </div>
             </div>
         </div>

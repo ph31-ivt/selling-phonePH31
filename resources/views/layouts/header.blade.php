@@ -94,7 +94,7 @@
 
     {{--        <nav class="navbar navbar-expand-md navbar-light navbar-laravel row content_header_three">--}}
     <ul class="nav row content_header_three justify-content-center">
-        <li class="nav-item"><a href="" class="nav-link">Trang chủ</a></li>
+        <li class="nav-item"><a href="{!! route('index') !!}" class="nav-link">Trang chủ</a></li>
         <li class="nav-item"><a href="#intro" class="nav-link">Giới thiệu</a></li>
         <li class="nav-item dropdown">
             <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sản phẩm</a>

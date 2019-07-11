@@ -12,14 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/index');
 });
 
-Route::get('/homepages', 'IndexController@index')->name('index');
+Route::get('/index', 'IndexController@index')->name('index');
 Route::get('/product/{id}', 'IndexController@productDetail')->name('productDetail');
 
 Route::get('/cart', 'CartController@getCart')->name('getCart');
 Route::post('/addCart/{id}', 'CartController@addCart')->name('addCart');
+Route::post('/addCartOne', 'CartController@addcartOne')->name('addcartOne');
+Route::post('/updateCart', 'CartController@updateCart')->name('updateCart');
 Route::get('/removeCart/{id}','CartController@removeCart')->where('id','[0-9]+')->name('removeCart');
 Route::get('/orderConfirm', 'CartController@orderConfirm')->name('orderConfirm');
 Route::post('/orderPay', 'CartController@orderPay')->name('orderPay');
@@ -32,9 +34,7 @@ Route::get('/delete/{id}', 'CommentController@destroy')->name('comment.destroy')
 
 Route::prefix('admin')->middleware('admin')->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('admin.index');
-    })->name('admin.index');
+    Route::get('/dashboard', 'AdminController@index')->name('admin.index');
 
     Route::prefix('categories')->group(function () {
         Route::get('/list', 'CategoryController@index')->name('category.index');
@@ -66,6 +66,27 @@ Route::prefix('admin')->middleware('admin')->group(function () {
         Route::put('/edit/{id}', 'UserController@update')->name('user.update');
         Route::delete('/destroy/{id}', 'UserController@destroy')->name('user.destroy');
         Route::get('/search', 'UserController@search')->name('user.search');
+
+        Route::post('/decentralization/{id}', 'UserController@decentralization')->name('user.decentralization');
+    });
+
+    Route::prefix('orders')->group(function () {
+        Route::get('/list', 'OrderController@index')->name('order.index');
+        Route::get('/show/{id}', 'OrderController@show')->name('order.show');
+        Route::get('/search', 'OrderController@search')->name('order.search');
+
+        Route::delete('/cancel/{id}', 'OrderController@cancel')->name('order.cancel');
+        Route::get('/cancel', 'OrderController@getCancel')->name('order.getCancel');
+        Route::post('/cancel/{id}', 'OrderController@restoreOrders')->name('order.restore');
+
+        Route::get('/processing', 'OrderController@getProcessing')->name('order.getProcessing');
+        Route::put('/processing/{id}', 'OrderController@processing')->name('order.processing');
+
+        Route::get('/export', 'OrderController@getExportOrder')->name('order.getExport');
+        Route::put('/export/{id}', 'OrderController@exportOrder')->name('order.export');
+
+        Route::get('/shipped', 'OrderController@getShippedOrder')->name('order.getShipped');
+        Route::put('/shipped/{id}', 'OrderController@shippedOrder')->name('order.shipped');
     });
 
 });;

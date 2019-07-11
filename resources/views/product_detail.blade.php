@@ -53,6 +53,7 @@
                         <P>Số Lượng:</P>
                         <button type="button" id="reduction"><i class="far fa-minus-square"></i></button>
                         <input type="hidden" name ="id_product" value="{{$product->id}}">
+                        @csrf
                         <input id="quaty" type="text" name="qty" value="1" step="1" min="1" max="5" autocomplete="off">
                         <button type="button" id="increase"><i class="far fa-plus-square"></i></button>
                         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -84,6 +85,28 @@
                         </script>
                     </div>
                     <a id="add-cart" href="#" class="btn btn-outline-success"><i class="fas fa-cart-plus"></i> THÊM VÀO GIỎ HÀNG</a>
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            $('#add-cart').click(function(){
+                                var id = $('input[name="id_product"]').val();
+                                var token= $('input[name="_token"]').val();
+                                var qty = $('input[name="qty"]').val();
+                                $.ajax({
+                                    url:"{!! route('addcartOne') !!}",
+                                    type:"POST",
+                                    cahe:false,
+                                    data:{"_token":token,"id":id,"quantity":qty},
+                                    success:function(data){
+                                        if(data==1){
+                                            location.reload();
+                                            alert("Thêm giỏi hàng thành công!");
+
+                                        }
+                                    }
+                                });
+                            });
+                        });
+                    </script>
                 </div>
             </div>
             <div class="row mt-4 p-0 m-0" >

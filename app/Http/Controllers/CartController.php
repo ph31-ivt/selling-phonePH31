@@ -14,7 +14,7 @@ class CartController extends Controller
     {
         $cart_contents = \Cart::getContent();
         $total = \Cart::getTotal();
-        return view('cart', compact(['cart_contents','total']));
+        return view('carts', compact(['cart_contents','total']));
     }
 
     public function addCart(Request $request, $id)
@@ -25,6 +25,33 @@ class CartController extends Controller
         return redirect()->route('getCart');
     }
 
+    public function addcartOne(Request $request){
+        if($request->ajax()){
+            $id = $request->get('id');
+            $qty = $request->get('quantity');
+            $product = Product::findOrFail($id);
+
+            \Cart::add(array('id'=>$product->id,'name'=>$product->name,'price'=>$product->price,'quantity'=>$qty,
+                'attributes'=>array('img'=>$product->images[0]->url)));
+            return 1;
+        }
+    }
+
+    public function updateCart(Request $request)
+    {
+        if ($request->ajax()){
+            $id = $request->id;
+            $qty = $request->quantity;
+            \Cart::update($id, array('quantity'=>array(
+                    'relative' => false,
+                    'value' =>$qty,
+                    )
+            ));
+        return 1;
+        }
+        return 'Fails';
+    }
+
     public function removeCart($id)
     {
         \Cart::remove($id);
@@ -33,9 +60,12 @@ class CartController extends Controller
 
     public function orderConfirm()
     {
-        $cart_contents = \Cart::getContent();
-        $total = \Cart::getTotal();
-        return view('orderConfirm', compact(['cart_contents','total']));
+        if (\auth()->check()){
+            $cart_contents = \Cart::getContent();
+            $total = \Cart::getTotal();
+            return view('orderConfirm', compact(['cart_contents','total']));
+        }
+        return redirect()->route('login');
     }
 
     public function orderPay(Request $request)

@@ -50,12 +50,11 @@
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-                    <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-                    <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-                    <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-                    <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-                    <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+                    <li><a href="{!! route('order.index') !!}"><i class="fa fa-circle-o"></i> Order list</a></li>
+                    <li><a href="{!! route('order.getProcessing') !!}"><i class="fa fa-circle-o"></i> Browse orders</a></li>
+                    <li><a href="{!! route('order.getExport') !!}"><i class="fa fa-circle-o"></i>Export order</a></li>
+                    <li><a href="{!! route('order.getShipped') !!}"><i class="fa fa-circle-o"></i> shipped</a></li>
+                    <li><a href="{!! route('order.getCancel') !!}"><i class="fa fa-circle-o"></i> Cancel</a></li>
                 </ul>
             </li>
             <li><a href="{{route('user.index')}}"><i class="fa fa-user"></i> <span>Users</span>

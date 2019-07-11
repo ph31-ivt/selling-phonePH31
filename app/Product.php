@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+    use SoftDeletes;
     //
     protected $fillable = [
         'name', 'category_id', 'price', 'quantily', 'describe'
@@ -38,7 +40,7 @@ class Product extends Model
 
     public static function countProduct()
     {
-        $count = count(\DB::table('products')->select('id')->get());
+        $count = count(Product::get('id'));
         return $count;
     }
 }

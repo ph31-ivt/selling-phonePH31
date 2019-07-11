@@ -14,7 +14,7 @@
                         <div class="col-2 m-0 p-0">
                             <h6 class="m-0" style="background-color: #ff1d15;color: #fff;width: 100%;height: 40px;line-height:40px;text-align: center">SẢN PHẨM MỚI</h6>
                         </div>
-                        <div class="col-10 text-right mb-1">
+                        <div class="col-10 text-right mb-2">
                             <a class="btn btn-outline-secondary prev1" href="#productnew" title="go back"><i class="fa fa-lg fa-chevron-left"></i></a>
                             <a class="btn btn-outline-secondary next1" href="#productnew" title="more"><i class="fa fa-lg fa-chevron-right"></i></a>
                         </div>
@@ -38,10 +38,21 @@
                                         <ul class="social">
                                             <li><a href="{!! route('productDetail', $product->id) !!}" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
                                             <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                                            <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li>
+                                                <a href="#" data-tip="Add to Cart"
+                                                   onclick="event.preventDefault();
+                                                           document.getElementById('addCart-form-{{$product->id}}').submit();"
+                                                >
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </a>
+                                                <form action="{!! route('addCart',$product->id) !!}" id="addCart-form-{{$product->id}}" method="post">
+                                                    @csrf
+                                                    {{--                                            <button type="submit" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></button>--}}
+                                                </form>
+                                            </li>
                                         </ul>
-                                        <span class="product-new-label">New</span>
-                                        <span class="product-discount-label">-10%</span>
+{{--                                        <span class="product-new-label">New</span>--}}
+                                        <span class="product-discount-label">New</span>
                                     </div>
                                     <div class="product-content">
                                         <h3 class="title"><a href="#">{!! $product->name !!}</a></h3>
@@ -69,10 +80,21 @@
                                             <ul class="social">
                                                 <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
                                                 <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                                                <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                                                <li>
+                                                    <a href="#" data-tip="Add to Cart"
+                                                       onclick="event.preventDefault();
+                                                               document.getElementById('addCart-form-{{$product->id}}').submit();"
+                                                    >
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                    </a>
+                                                    <form action="{!! route('addCart',$product->id) !!}" id="addCart-form-{{$product->id}}" method="post">
+                                                        @csrf
+                                                        {{--                                            <button type="submit" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></button>--}}
+                                                    </form>
+                                                </li>
                                             </ul>
-                                            <span class="product-new-label">New</span>
-                                            <span class="product-discount-label">-10%</span>
+{{--                                            <span class="product-new-label">New</span>--}}
+                                            <span class="product-discount-label">New</span>
                                         </div>
                                         <div class="product-content">
                                             <h3 class="title"><a href="#">{!! $product->name !!}</a></h3>
@@ -101,8 +123,8 @@
                                             <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
                                             <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
-                                        <span class="product-new-label">New</span>
-                                        <span class="product-discount-label">-10%</span>
+{{--                                        <span class="product-new-label"></span>--}}
+                                        <span class="product-discount-label">New</span>
                                     </div>
                                     <div class="product-content">
                                         <h3 class="title"><a href="#">Women's Black Top</a></h3>
@@ -126,7 +148,7 @@
                                             <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
                                             <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
-                                        <span class="product-discount-label">-12%</span>
+                                        <span class="product-discount-label">NEW</span>
                                     </div>
                                     <div class="product-content">
                                         <h3 class="title"><a href="#">Men's Blue Shirt</a></h3>
@@ -158,16 +180,16 @@
             <div class="container-fluid">
                 <div class="row mb-1 p-0" style="border-bottom: 2px solid #7d7d7d">
                     <div class="col-2 m-0 p-0">
-                        <h6 class="m-0" style="background-color: #ff1d15;color: #fff;width: 100%;height: 40px;line-height:40px;text-align: center">SẢN PHẨM MỚI</h6>
+                        <h6 class="m-0" style="background-color: #ff1d15;color: #fff;width: 100%;height: 40px;line-height:40px;text-align: center">SẢN PHẨM BÁN CHẠY</h6>
                     </div>
-                    <div class="col-10 text-right mb-1">
+                    <div class="col-10 text-right mb-4">
                         <a href="">Xem thêm </a>
                     </div>
                 </div>
             </div>
             <div class="container-fluid pr-0 pl-0">
                 <div class="row">
-                    @foreach($products as $product)
+                    @foreach($product_hots as $product)
                         <div class="col-md-2">
                         <div class="product-grid4">
                             <div class="product-image4">

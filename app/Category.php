@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
+    use SoftDeletes;
     //
     protected $fillable = [
         'name'
@@ -18,7 +20,7 @@ class Category extends Model
 
     public static function countCategory()
     {
-        $count = count(\DB::table('categories')->select('id')->get());
+        $count = count(Category::get('id'));
         return $count;
     }
 }

@@ -39,7 +39,7 @@
                     <div class="container">
                         <div class="form-group">
                             <label for="usr">Họ tên:</label>
-                            <input type="text" class="form-control" name="name" id="name" required>
+                            <input type="text" class="form-control" name="name" value="{!! old('name') !!}" id="name" required>
                         </div>
                         <div class="form-group">
                             <label for="pwd">Số điện thoại:</label>

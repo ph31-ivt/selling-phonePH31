@@ -27,7 +27,8 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
-            <li class="active">Product</li>
+            <li><a href="#"><i class="fa fa-tablet"></i> Product</a></li>
+            <li class="active">List</li>
         </ol>
     </section>
 

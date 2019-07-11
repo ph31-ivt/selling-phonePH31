@@ -4,14 +4,17 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use SoftDeletes;
     use Notifiable;
 
     CONST USER_ADMIN = 0;
     CONST USER_CUSTOMER = 1;
+    CONST USER_SHIPPER = 2;
     /**
      * The attributes that are mass assignable.
      *
@@ -56,7 +59,7 @@ class User extends Authenticatable
 
     public static function countUsers()
     {
-        $count = count(\DB::table('users')->select('id')->get());
+        $count = count(User::get('id'));
         return $count;
     }
 }
