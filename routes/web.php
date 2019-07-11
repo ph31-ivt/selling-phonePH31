@@ -26,6 +26,12 @@ Route::get('/removeCart/{id}','CartController@removeCart')->where('id','[0-9]+')
 Route::get('/orderConfirm', 'CartController@orderConfirm')->name('orderConfirm');
 Route::post('/orderPay', 'CartController@orderPay')->name('orderPay');
 
+Route::get('/search', 'searchController@index')->name('search.index');
+Route::get('autocomplete', ['as'=>'autocomplete', 'uses'=>'searchController@autocomplete']);
+
+Route::post('/comment/{product_id}', 'CommentController@store')->name('comment.store');
+Route::get('/delete/{id}', 'CommentController@destroy')->name('comment.destroy');
+
 Route::prefix('admin')->middleware('admin')->group(function () {
 
     Route::get('/dashboard', 'AdminController@index')->name('admin.index');

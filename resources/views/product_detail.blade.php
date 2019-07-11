@@ -131,8 +131,37 @@
                             {!! $product->describe !!}
                         </div>
                         <div id="menu1" class="container tab-pane fade"><br>
-                            <h3>Menu 1</h3>
-                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <div class="row">
+                                <form action="{{route('comment.store',$product->id)}}" method="post">
+                                    @csrf
+                                    <div class="form-group">
+                                        <textarea name="contents" required placeholder="Viết bình luận của bạn" class="form-control" id="exampleFormControlTextarea1" rows="2" style="width: 800px;"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success" style="float: right">Gửi bình luận</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <br>
+                            @foreach($comments as $comment)
+                                <div class="container">
+                                    <div class="row">
+                                        <span>Bởi: <strong>{{$comment->user->name}}</strong></span>
+                                        <span class="ml-auto">Lúc: {{$comment->date_time}}</span>
+                                        <form action="{{route('comment.destroy', $comment->id)}}" method="get">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" style="margin-left: 80px" class="btn"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <p>{{$comment->content}}</p>
+                                    </div>
+                                    <hr>
+                                </div>
+                            @endforeach
+                            {{$comments->links()}}
                         </div>
                         <div id="menu2" class="container tab-pane fade"><br>
                             <h3>Menu 2</h3>
