@@ -20,7 +20,7 @@
 
                 <form action="{{route('search.index')}}" method="get" role="search" class="typeahead navbar-nav col-md-7 my-2 my-lg-0 ml-auto">
                     <div class="input-group">
-                        <input type="search" required class="form-control search-input custom-width" name="key" placeholder="Search for..." autocomplete="off">
+                        <input type="search" required class="form-control search-input custom-widthsearch" name="key" placeholder="Search for..." autocomplete="off">
                         <span class="input-group-btn" style="position: absolute;left: 26em;">
                             <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
                         </span>

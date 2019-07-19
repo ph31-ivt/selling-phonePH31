@@ -148,11 +148,6 @@
                                     <div class="row">
                                         <span>Bởi: <strong>{{$comment->user->name}}</strong></span>
                                         <span class="ml-auto">Lúc: {{$comment->date_time}}</span>
-                                        <form action="{{route('comment.destroy', $comment->id)}}" method="get">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" style="margin-left: 80px" class="btn"><i class="fas fa-trash"></i></button>
-                                        </form>
                                     </div>
                                     <br>
                                     <div class="row">
