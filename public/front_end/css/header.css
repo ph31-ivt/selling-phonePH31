@@ -85,6 +85,10 @@
     color: #000000;
 }
 
+.title-danger{
+    color: red;
+}
+
 #imgsearch {
   width: 10%;
   height: 40px;

@@ -38,16 +38,20 @@
                     </div>
                     <div class="container">
                         <div class="form-group">
-                            <label for="usr">Họ tên:</label>
-                            <input type="text" class="form-control" name="name" value="{!! old('name') !!}" id="name" required>
+                            <label for="usr">Họ tên <sup class="title-danger">*</sup>:</label>
+                            <input type="text" class="form-control" name="name" value="{!! $user->name ? $user->name : old('name') !!}" id="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="pwd">Số điện thoại:</label>
-                            <input type="text" class="form-control" name="tel" id="tel" required>
+                            <label for="email">Email <sup class="title-danger">*</sup>:</label>
+                            <input type="email" class="form-control" name="email" value="{!! $user->email ? $user->email :  old('email') !!}" id="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="usr">Địa chỉ:</label>
-                            <input type="text" class="form-control" name="address" id="address" required>
+                            <label for="pwd">Số điện thoại <sup class="title-danger">*</sup>:</label>
+                            <input type="text" class="form-control" name="tel" value="{!! $user->tel ? $user->tel : old('tel') !!}" id="tel" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="usr">Địa chỉ giao hàng <sup class="title-danger">*</sup>:</label>
+                            <input type="text" class="form-control" name="address" value="{!! $user->address ? $user->address :  old('address') !!}" id="address" required>
                         </div>
                     </div>
                 </div>

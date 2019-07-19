@@ -59,13 +59,13 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="{!! route('profile_manager') !!}">
                                     Cập nhật thông tin
                                 </a>
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="{{route('order_manager')}}">
                                     Quản lý đơn hàng
                                 </a>
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="{!! route('change_password') !!}">
                                     Đổi mật khẩu
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -101,7 +101,7 @@
             <div class="dropdown-menu">
                 @foreach($categories as $category)
                     @if(count($category->products)>0)
-                    <a class="dropdown-item" href="#">{!! $category->name !!}</a>
+                    <a class="dropdown-item" href="{!! route('getProductByCategory',$category->id) !!}">{!! $category->name !!}</a>
                     @endif
                 @endforeach
             </div>

@@ -53,9 +53,11 @@ class LoginController extends Controller
         $this->validateLogin($request);
         if (Auth::attempt(['email'=>$request->email,'password'=>$request->password,'user_type'=>User::USER_ADMIN,'active'=>1])){
             return redirect()->intended(route('admin.index'));
+        }elseif (Auth::attempt(['email'=>$request->email,'password'=>$request->password,'user_type'=>User::USER_SHIPPER,'active'=>1])) {
+            return redirect()->intended(route('order.getShipped'));
         }elseif (Auth::attempt(['email'=>$request->email,'password'=>$request->password,'user_type'=>User::USER_CUSTOMER,'active'=>1])){
             return redirect()->intended(route('home'));
-        }elseif (Auth::attempt(['email'=>$request->email,'password'=>$request->password,'user_type'=>User::USER_CUSTOMER,'active'=>0])){
+        }elseif (Auth::attempt(['email'=>$request->email,'password'=>$request->password,'active'=>0])){
             Auth::logout();
             return redirect()->route('login')->with('error',"Please activated your account !");
         } else{

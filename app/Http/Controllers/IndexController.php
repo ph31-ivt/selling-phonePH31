@@ -28,4 +28,16 @@ class IndexController extends Controller
         $comments = Comment::where('product_id','=',$id)->orderby('date_time','desc')->paginate(5);
         return view('product_detail',compact(['product','comments']));
     }
+
+    public function getCategory()
+    {
+        $products = Product::paginate(5);
+        return view('category',compact('products'));
+    }
+
+    public function getProductByCategory($id)
+    {
+        $productBycategory = Product::where('category_id','=',$id)->get();
+        return view('category',compact('productBycategory'));
+    }
 }

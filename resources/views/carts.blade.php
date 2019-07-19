@@ -86,7 +86,6 @@
                                                 success:function(data){
                                                     if(data==1){
                                                         location.reload();
-                                                        alert("Giảm giỏi hàng thành công!");
 
                                                     }
                                                 }
@@ -112,7 +111,6 @@
                                                 success:function(data){
                                                     if(data==1){
                                                         location.reload();
-                                                        alert("Tăng giỏi hàng thành công!");
 
                                                     }
                                                 }

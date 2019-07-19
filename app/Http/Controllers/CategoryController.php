@@ -79,7 +79,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->name = $request->name;
         $category->save();
-        return redirect()->route('category.index')->with('success','Edit successfully');
+        return redirect()->back()->with('success','Edit successfully');
     }
 
     /**

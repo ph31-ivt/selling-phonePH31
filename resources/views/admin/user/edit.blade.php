@@ -50,7 +50,7 @@
                     @method('PUT')
                     <div class="form-group row">
                         <div class="col-md-12 @error('name') has-error @enderror">
-                            <label for="name">Name:</label>
+                            <label for="name">Name <sup class="title-danger">*</sup>:</label>
                             <input type="text" @error('name') id="inputError" @enderror class="form-control" name="name" required value="{{$user->name}}" id="name">
                             @error('name')
                             <span class="help-block"><strong>{{$message}}</strong></span>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12 @error('email') has-error @enderror">
-                            <label for="email">Email:</label>
+                            <label for="email">Email <sup class="title-danger">*</sup>:</label>
                             <input type="email" @error('email') id="inputError" @enderror class="form-control" name="email" required value="{{$user->email}}" id="email">
                             @error('email')
                             <span class="help-block"><strong>{{$message}}</strong></span>
@@ -68,7 +68,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12 @error('password') has-error @enderror">
-                            <label for="password">Password:</label>
+                            <label for="password">Password <sup class="title-danger">*</sup>:</label>
                             <input type="password" @error('password') id="inputError" @enderror class="form-control" name="password" required id="password">
                             @error('password')
                             <span class="help-block"><strong>{{$message}}</strong></span>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12 @error('tel') has-error @enderror">
-                            <label for="tel">Tel:</label>
+                            <label for="tel">Tel <sup class="title-danger">*</sup>:</label>
                             <input type="text" @error('tel') id="inputError" @enderror class="form-control" name="tel" required value="{{$user->tel}}" id="tel">
                             @error('tel')
                             <span class="help-block"><strong>{{$message}}</strong></span>
@@ -86,7 +86,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12 @error('address') has-error @enderror">
-                            <label for="address">Address:</label>
+                            <label for="address">Address <sup class="title-danger">*</sup>:</label>
                             <input type="text" @error('address') id="inputError" @enderror class="form-control" name="address" required value="{{$user->address}}" id="address">
                             @error('address')
                             <span class="help-block"><strong>{{$message}}</strong></span>
@@ -95,7 +95,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12 @error('active') has-error @enderror">
-                            <label for="address">Active:</label>
+                            <label for="address">Active <sup class="title-danger">*</sup>:</label>
                             <select name="active" @error('active') id="inputError" @enderror id="active" class="form-control" required>
                                 <option value="0" @if($user->active == 0) selected @endif>No</option>
                                 <option value="1" @if($user->active == 1) selected @endif>Yes</option>

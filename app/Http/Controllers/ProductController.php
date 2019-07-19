@@ -173,4 +173,52 @@ class ProductController extends Controller
         return view('admin.product.index',compact('products'));
 
     }
+
+    public function showImage($id)
+    {
+        $imageOfProducts = Image::where('product_id','=',$id)->get();
+        $product = Product::findOrFail($id);
+        return view('admin.product.product_img',compact(['imageOfProducts','product']));
+    }
+
+    public function destroyImage($id)
+    {
+        $image = Image::findOrFail($id);
+        $image->delete();
+        return redirect()->back();
+    }
+
+    public function createImage($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('admin.product.add_img',compact('product'));
+    }
+
+    public function storeImage(Request $request,$id)
+    {
+        if($request->file('images_up')){
+            foreach($request->file('images_up') as $image){
+                $path=$image->store('images');
+                $img= Image::create([
+                    'url' =>$path,
+                    'product_id' => $id
+                ]);
+            }
+            return redirect()->back()->with('success','Add image successfully!');
+        }
+        return redirect()->back()->with('error','Add Image failure!');
+    }
+
+    public function updateImage(Request $request, $id)
+    {
+        if($request->file('images_up')){
+            foreach($request->file('images_up') as $image){
+                $path=$image->store('images');
+                $image = Image::where('id','=',$id)
+                    ->update(['url' => $path]);
+            }
+            return redirect()->back()->with('success','Update image successfully!');
+        }
+        return redirect()->back()->with('error','Update Image failure!');
+    }
 }

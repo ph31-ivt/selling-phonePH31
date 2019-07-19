@@ -5,7 +5,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                <img src="https://salt.tikicdn.com/desktop/img/avatar.png?v=3" height="25" width="25" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p>{{Auth::user()->name}}</p>
@@ -26,11 +26,13 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
+
             <li>
                 <a href="{{route('admin.index')}}">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
+            @if(!(\auth()->user()->user_type == App\User::USER_SHIPPER))
             <li>
                 <a href="{{route('category.index')}}">
                     <i class="fa fa-list-alt"></i> <span>Categories</span>
@@ -67,6 +69,12 @@
                     <span class="pull-right-container"><small class="label pull-right bg-green">{{\App\User::countUsers()}}</small></span>
                 </a>
             </li>
+            @else
+            <li><a href="{{route('order.getShipped')}}"><i class="fa fa-shopping-cart"></i> <span>Order shipper</span>
+                    <span class="pull-right-container"><small class="label pull-right bg-green">N</small></span>
+                </a>
+            </li>
+            @endif
         </ul>
     </section>
     <!-- /.sidebar -->

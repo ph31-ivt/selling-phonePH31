@@ -53,7 +53,7 @@
                             <!-- Modal body -->
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="shipper_id" class="col-6">Chọn nhân viên giao đơn hàng:</label>
+                                        <label for="shipper_id" class="col-6">Chọn nhân viên giao đơn hàng <sup class="title-danger">*</sup>:</label>
                                         <select name="shipper_id" id="shipper_id" class="form-control col-6" required>
                                             @foreach($shippers as $shipper)
                                                 <option value="{{$shipper->id}}">{{$shipper->name}}</option>

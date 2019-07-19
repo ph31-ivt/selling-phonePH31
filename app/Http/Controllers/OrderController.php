@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\User;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -127,7 +128,13 @@ class OrderController extends Controller
 
     public function getShippedOrder()
     {
-        $orders = Order::where('status','=',3)/*->where('shipper_id','=',auth()->user()->id)*/->paginate(5);
+        if (auth()->user()->user_type == User::USER_ADMIN)
+        {
+            $orders = Order::where('status','=',3)->paginate(5);
+            $status = 'D';
+            return view('admin.order.index',compact(['orders','status']));
+        }
+        $orders = Order::where('status','=',3)->where('shipper_id','=',auth()->user()->id)->paginate(5);
         $status = 'D';
         return view('admin.order.index',compact(['orders','status']));
     }

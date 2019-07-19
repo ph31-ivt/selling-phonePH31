@@ -103,6 +103,7 @@
                                 <td>{{$product->quantily}}</td>
                                 <td>
                                     <a href="{{route('product.show',$product->id)}}" class="btn btn-primary">Show</a> |
+                                    <a href="{{route('product.getImage',$product->id)}}" class="btn btn-facebook">Image</a> |
                                     <a href="{{route('product.edit',$product->id)}}" class="btn btn-primary">Edit</a> |
                                     <form action="{{route('product.destroy',$product->id)}}" method="post" style="display: inline">
                                         @csrf

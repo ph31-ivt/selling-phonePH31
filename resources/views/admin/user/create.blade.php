@@ -49,8 +49,8 @@
                     @csrf
                     <div class="form-group row">
                         <div class="col-md-12 @error('name') has-error @enderror">
-                            <label for="name">Name:</label>
-                            <input type="text" @error('name') id="inputError" @enderror class="form-control" name="name" required id="name">
+                            <label for="name">Name <sup class="title-danger">*</sup>:</label>
+                            <input type="text" @error('name') id="inputError" @enderror class="form-control" name="name" value="{!! old('name') !!}" required id="name">
                             @error('name')
                             <span class="help-block"><strong>{{$message}}</strong></span>
                             @enderror
@@ -58,8 +58,8 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12 @error('email') has-error @enderror">
-                            <label for="email">Email:</label>
-                            <input type="email" @error('email') id="inputError" @enderror class="form-control" name="email" required id="email">
+                            <label for="email">Email <sup class="title-danger">*</sup>:</label>
+                            <input type="email" @error('email') id="inputError" @enderror class="form-control" name="email" value="{!! old('email') !!}" required id="email">
                             @error('email')
                             <span class="help-block"><strong>{{$message}}</strong></span>
                             @enderror
@@ -67,8 +67,8 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12 @error('password') has-error @enderror">
-                            <label for="password">Password:</label>
-                            <input type="password" @error('password') id="inputError" @enderror class="form-control" name="password" required id="password">
+                            <label for="password">Password <sup class="title-danger">*</sup>:</label>
+                            <input type="password" @error('password') id="inputError" @enderror class="form-control" name="password" value="{!! old('password') !!}" required id="password">
                             @error('password')
                             <span class="help-block"><strong>{{$message}}</strong></span>
                             @enderror
@@ -76,8 +76,8 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12 @error('tel') has-error @enderror">
-                            <label for="tel">Tel:</label>
-                            <input type="text" @error('tel') id="inputError" @enderror class="form-control" name="tel" required id="tel">
+                            <label for="tel">Tel <sup class="title-danger">*</sup>:</label>
+                            <input type="text" @error('tel') id="inputError" @enderror class="form-control" name="tel" value="{!! old('tel') !!}" required id="tel">
                             @error('tel')
                             <span class="help-block"><strong>{{$message}}</strong></span>
                             @enderror
@@ -85,8 +85,8 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12 @error('address') has-error @enderror">
-                            <label for="address">Address:</label>
-                            <input type="text" @error('address') id="inputError" @enderror class="form-control" name="address" required id="address">
+                            <label for="address">Address <sup class="title-danger">*</sup>:</label>
+                            <input type="text" @error('address') id="inputError" @enderror class="form-control" name="address" value="{!! old('address') !!}" required id="address">
                             @error('address')
                             <span class="help-block"><strong>{{$message}}</strong></span>
                             @enderror
@@ -94,7 +94,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12 @error('active') has-error @enderror">
-                            <label for="active">Active:</label>
+                            <label for="active">Active <sup class="title-danger">*</sup>:</label>
                             <select name="active" @error('active') id="inputError" @enderror id="active" class="form-control" required>
                                 <option value="0">No</option>
                                 <option value="1">Yes</option>
