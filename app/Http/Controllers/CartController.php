@@ -63,7 +63,8 @@ class CartController extends Controller
         if (\auth()->check()){
             $cart_contents = \Cart::getContent();
             $total = \Cart::getTotal();
-            return view('orderConfirm', compact(['cart_contents','total']));
+            $user = \auth()->user();
+            return view('orderConfirm', compact(['cart_contents','total','user']));
         }
         return redirect()->route('login');
     }
@@ -72,7 +73,7 @@ class CartController extends Controller
     {
         $order = new Order();
         $order->user_id = auth()->user()->id;
-        $order->order_date = date('y-m-d');
+        $order->order_date = date('y-m-d H:i:s');
         $order->name = $request->name;
         $order->tel = $request->tel;
         $order->address = $request->address;

@@ -26,4 +26,16 @@ class IndexController extends Controller
         $product = Product::findOrFail($id);
         return view('product_detail',compact('product'));
     }
+
+    public function getCategory()
+    {
+        $products = Product::paginate(5);
+        return view('category',compact('products'));
+    }
+
+    public function getProductByCategory($id)
+    {
+        $productBycategory = Product::where('category_id','=',$id)->get();
+        return view('category',compact('productBycategory'));
+    }
 }

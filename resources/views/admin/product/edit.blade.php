@@ -50,14 +50,14 @@
                     @method('PUT')
                     <div class="form-group row">
                         <div class="col-md-4 @error('name') has-error @enderror">
-                            <label for="name">Name:</label>
+                            <label for="name">Name <sup class="title-danger">*</sup>:</label>
                             <input type="text" @error('name') id="inputError" @enderror class="form-control" name="name" required id="name" value="{{$product->name}}">
                             @error('name')
                             <span class="help-block"><strong>{{$message}}</strong></span>
                             @enderror
                         </div>
                         <div class="col-md-4 @error('category_id') has-error @enderror">
-                            <label for="category_id">Category:</label>
+                            <label for="category_id">Category <sup class="title-danger">*</sup>:</label>
                             <select name="category_id" @error('category_id') id="inputError" @enderror id="category_id" class="form-control" required>
                                 @foreach($categories as $category)
                                     <option value="{{$category->id}}"
@@ -72,7 +72,7 @@
                             @enderror
                         </div>
                         <div class="col-md-4 @error('price') has-error @enderror">
-                            <label for="price">Price:</label>
+                            <label for="price">Price <sup class="title-danger">*</sup>:</label>
                             <input type="number" @error('price') id="inputError" @enderror class="form-control" name="price" required id="price" value="{{$product->price}}">
                             @error('price')
                             <span class="help-block"><strong>{{$message}}</strong></span>
@@ -82,7 +82,7 @@
 
                     <div class="form-group row">
                         <div class="col-md-4 @error('quantily') has-error @enderror">
-                            <label for="quantily">Quantily:</label>
+                            <label for="quantily">Quantily <sup class="title-danger">*</sup>:</label>
                             <input type="number" @error('quantily') id="inputError" @enderror class="form-control" name="quantily" required id="quantily" value="{{$product->quantily}}">
                             @error('quantily')
                             <span class="help-block"><strong>{{$message}}</strong></span>
@@ -180,8 +180,8 @@
 
                     <div class="form-group row">
                         <div class="col-md-4 @error('images_up') has-error @enderror">
-                            <img id="blah" src="{{asset('storage/'.$product->images[0]->url)}}" alt="your image" width="100" height="100" style="display: block"/>
-                            <label for="images">Images:</label>
+                            <img id="blah" src="{{count($product->images)>0 ? asset('storage/'.$product->images[0]->url) : ''}}" alt="your image" width="100" height="100" style="display: block"/>
+                            <label for="images">Images <sup class="title-danger">*</sup>:</label>
                             <input type="file" @error('images_up') id="inputError" @enderror class="form-control" name="images_up[]" id="images" multiple
                                    onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
                             >

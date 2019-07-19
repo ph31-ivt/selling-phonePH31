@@ -49,8 +49,8 @@
                         @csrf
                         <div class="form-group row">
                             <div class="col-md-12 @error('name') has-error @enderror">
-                                <label for="name">Name category:</label>
-                                <input type="text" class="form-control" @error('name') id="inputError" @enderror name="name" required id="name">
+                                <label for="name">Name category: <sup class="title-danger">*</sup></label>
+                            <input type="text" class="form-control" value="{!! old('name') !!}" @error('name') id="inputError" @enderror name="name" value="{{ old('name') }}" required id="name">
                                 @error('name')
                                     <span class="help-block"><strong>{{$message}}</strong></span>
                                 @enderror

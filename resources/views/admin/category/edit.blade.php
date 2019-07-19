@@ -41,7 +41,7 @@
                     @method('PUT')
                     <div class="form-group row">
                         <div class="col-md-12 @error('name') has-error @enderror">
-                            <label for="name">Name category:</label>
+                            <label for="name">Name category: <sup class="title-danger">*</sup></label>
                             <input type="text" class="form-control" @error('name') id="inputError" @enderror name="name" required id="name" value="{{$category->name}}">
                             @error('name')
                                 <span class="help-block"><strong>{{$message}}</strong></span>
