@@ -23,11 +23,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style>
-        .custom-width {
-            width: 200% !important;
-        }
-    </style>
     <link rel="stylesheet" href="{{asset('front_end/css/header.css')}}">
 </head>
 <body>
@@ -77,19 +72,23 @@
                 },
                 templates: {
                     header: [
-                        '<div class="list-group search-results-dropdown"></div>'
+                        '<div class="list-group search-results-dropdown smsearch"></div>'
                     ],
                     suggestion: function (data) {
-                        return '<div class="list-group-item" style="width: 400px"> <a href="/product/' + data.id +'">' + data.name + '</a></div>';
+                        return '<div class="list-group-item resultsearch"><a href="/product/' + data.id +'">' +
+                            '<img id="imgsearch" src="/storage/'+data.images[0].url+'" alt="">' +
+                            '<div class="titlesearch"> <h3 id="tlsearch">' + data.name + '</h3>' +
+                            '<p class="prsearch">' + data.price + '</p></div>' +
+                             +'</a></div>';
                     }
                 }
             }
         ]);
     });
-    $(document).ready(function () {
-
-        $('.form-control > .search-input > .tt-hint').addClass('custom-width');
-        $('.form-control > .search-input > .tt-input').addClass('custom-width');
-
-    })
+    // $(document).ready(function () {
+    //
+    //     $('.form-control > .search-input > .tt-hint').addClass('custom-width');
+    //     $('.form-control > .search-input > .tt-input').addClass('custom-width');
+    //
+    // })
 </script>

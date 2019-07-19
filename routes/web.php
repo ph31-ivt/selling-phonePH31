@@ -29,9 +29,6 @@ Route::post('/orderPay', 'CartController@orderPay')->name('orderPay');
 Route::get('/search', 'searchController@index')->name('search.index');
 Route::get('autocomplete', ['as'=>'autocomplete', 'uses'=>'searchController@autocomplete']);
 
-Route::post('/comment/{product_id}', 'CommentController@store')->name('comment.store');
-Route::get('/delete/{id}', 'CommentController@destroy')->name('comment.destroy');
-
 Route::prefix('admin')->middleware('admin')->group(function () {
 
     Route::get('/dashboard', 'AdminController@index')->name('admin.index');
@@ -87,6 +84,13 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 
         Route::get('/shipped', 'OrderController@getShippedOrder')->name('order.getShipped');
         Route::put('/shipped/{id}', 'OrderController@shippedOrder')->name('order.shipped');
+    });
+
+    Route::prefix('comment')->group(function () {
+        Route::get('/list', 'CommentController@index')->name('comment.index');
+        Route::get('/show/{product_id}', 'CommentController@show')->name('comment.show');
+        Route::post('/comment/{product_id}', 'CommentController@store')->name('comment.store');
+        Route::delete('/destroy/{product_id}/{user_id}/{content}', 'CommentController@destroy')->name('comment.destroy');
     });
 
 });;

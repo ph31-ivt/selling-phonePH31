@@ -57,6 +57,12 @@
                     <li><a href="{!! route('order.getCancel') !!}"><i class="fa fa-circle-o"></i> Cancel</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="{{route('comment.index')}}">
+                    <i class="fa fa-comments"></i> <span>Comment</span>
+                    <span class="pull-right-container"><small class="label pull-right bg-green">{{\App\Comment::countComment()}}</small></span>
+                </a>
+            </li>
             <li><a href="{{route('user.index')}}"><i class="fa fa-user"></i> <span>Users</span>
                     <span class="pull-right-container"><small class="label pull-right bg-green">{{\App\User::countUsers()}}</small></span>
                 </a>

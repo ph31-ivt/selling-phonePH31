@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Image;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class searchController extends Controller
 
     public function autocomplete(Request $request)
     {
-        $data = Product::where("name","LIKE","%{$request->input('query')}%")->get(["name", "id", "price"])->toArray();
+        $data = Product::with('images')->where("name","LIKE","%{$request->input('query')}%")
+            ->get(["name", "id", "price"])->toArray();
+//        dd($data);
         return response()->json($data);
     }
 

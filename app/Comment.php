@@ -20,4 +20,10 @@ class Comment extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public static function countComment()
+    {
+        $count = count(Comment::get('id'));
+        return $count;
+    }
 }
