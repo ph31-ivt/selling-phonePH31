@@ -84,6 +84,46 @@
     background-color: #ffffff;
     color: #000000;
 }
+
 .title-danger{
     color: red;
+}
+
+#imgsearch {
+  width: 10%;
+  height: 40px;
+}
+
+.resultsearch {
+  width: 400px;
+  border-radius: 2px;
+}
+
+.resultsearch:hover {
+  background-color: #F1F7F1;
+}
+
+.custom-widthsearch {
+  width: 200% !important;
+}
+
+.titlesearch {
+  width: 88%;
+  float: right;
+}
+
+#tlsearch {
+  font-size: 14px;
+  color: #505050;
+  margin-bottom: 6px;
+}
+
+.prsearch {
+  font-size: 14px;
+  font-weight: bold;
+  color: #d0021b;
+}
+
+.smsearch {
+  margin-top: 5px;
 }

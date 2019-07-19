@@ -37,6 +37,9 @@ Route::put('/profile/{id}','HomeController@update_profile_manager')->name('updat
 Route::get('/change-password/','HomeController@change_password')->name('change_password');
 Route::put('/change-password/{id}','HomeController@update_change_password')->name('update_change_password');
 
+Route::get('/search', 'searchController@index')->name('search.index');
+Route::get('autocomplete', ['as'=>'autocomplete', 'uses'=>'searchController@autocomplete']);
+
 Route::group(['prefix'=>'admin','middleware'=>'adminPage'],function () {
 
     Route::get('/dashboard', 'AdminController@index')->name('admin.index');
@@ -97,6 +100,13 @@ Route::group(['prefix'=>'admin','middleware'=>'adminPage'],function () {
 
         Route::get('/shipped', 'OrderController@getShippedOrder')->middleware('adminPage')->name('order.getShipped');
         Route::put('/shipped/{id}', 'OrderController@shippedOrder')->middleware('adminPage')->name('order.shipped');
+    });
+
+    Route::prefix('comment')->group(function () {
+        Route::get('/list', 'CommentController@index')->name('comment.index');
+        Route::get('/show/{product_id}', 'CommentController@show')->name('comment.show');
+        Route::post('/comment/{product_id}', 'CommentController@store')->name('comment.store');
+        Route::delete('/destroy/{product_id}/{user_id}/{content}', 'CommentController@destroy')->name('comment.destroy');
     });
 
 });;
