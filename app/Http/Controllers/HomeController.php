@@ -29,7 +29,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = \auth()->user();
+        return view('profile_manager',compact('user'));
     }
 
     public function order_manager()

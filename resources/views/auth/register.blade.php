@@ -151,6 +151,11 @@
                                        value="{{ old('email') }}" autocomplete="email" placeholder="Email address"
                                        required>
                                 <label for="inputEmail">Email</label>
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <hr>

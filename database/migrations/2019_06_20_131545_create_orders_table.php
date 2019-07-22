@@ -28,7 +28,10 @@ class CreateOrdersTable extends Migration
             $table->string('tel',11);
             $table->string('address');
             $table->double('total');
-            $table->integer('status');
+            $table->unsignedBigInteger('status_id')->default(1);
+            $table->foreign('status_id')
+                ->references('id')->on('status')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

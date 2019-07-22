@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreOrderPost;
 use App\Order;
 use App\Order_Detail;
 use App\Product;
@@ -69,7 +70,7 @@ class CartController extends Controller
         return redirect()->route('login');
     }
 
-    public function orderPay(Request $request)
+    public function orderPay(StoreOrderPost $request)
     {
         $order = new Order();
         $order->user_id = auth()->user()->id;
@@ -78,7 +79,7 @@ class CartController extends Controller
         $order->tel = $request->tel;
         $order->address = $request->address;
         $order->total = \Cart::getTotal();
-        $order->status = 1;
+        $order->status_id = 1;
         $order->save();
 
         $cart_contents = \Cart::getContent();

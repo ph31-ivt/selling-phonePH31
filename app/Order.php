@@ -13,8 +13,13 @@ class Order extends Model
     CONST cancel  = 5;
     //
     protected $fillable = [
-        'user_id', 'order_date','order_delivery_date','shipper_id', 'name', 'tel', 'address' ,'total', 'status'
+        'user_id', 'order_date','order_delivery_date','shipper_id', 'name', 'tel', 'address' ,'total', 'status_id'
     ];
+
+    public function status()
+    {
+        return $this->belongsTo('App\Status','status_id');
+    }
 
     public function user()
     {

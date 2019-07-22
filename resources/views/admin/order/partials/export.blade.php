@@ -21,15 +21,7 @@
             <td>{{$order->address}}</td>
             <td>{{$order->total}}</td>
             <td class="status">
-                @if($order->status == 1)
-                    <p class="pending">PENDING</p>
-                @elseif($order->status == 2)
-                    <p class="approved">APPROVED</p>
-                @elseif($order->status == 3)
-                    <p class="shipping">SHIPPING</p>
-                @elseif($order->status == 4)
-                    <p class="cancel">CANCEL</p>
-                @endif
+                {{$order->status->name}}
             </td>
             <td>{{ date('d-m-Y',strtotime($order->order_date))}}</td>
 {{--            <td>{!! \App\User::findOrFail($order->shipper_id)->name !!}</td>--}}

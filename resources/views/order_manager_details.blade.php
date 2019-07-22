@@ -127,17 +127,7 @@
                     <div class="container">
                         <div class="row">
                             <h1 class="have-margin col-md-6 mb-3 mt-3">Chi tiết đơn hàng #{{$ordered->id}}
-                                - @if($ordered->status == 1)
-                                    Đang xử lý
-                                @elseif($ordered->status == 2)
-                                    Đã xử lý
-                                @elseif($ordered->status == 3)
-                                    Đang giao
-                                @elseif($ordered->status == 4)
-                                    Giao hàng thành công
-                                @elseif($ordered->status == 5)
-                                    Bị hủy bỏ
-                                @endif
+                                - {{$ordered->status->name}}
                             </h1>
                             <p class="date col-md-6" style="margin-top: 16px;text-align: right">
                                 <span>Ngày đặt hàng:  </span>{{date('H:i d-m-Y', strtotime($ordered->order_date))}}</p>

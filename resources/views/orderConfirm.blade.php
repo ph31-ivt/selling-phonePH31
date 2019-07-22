@@ -39,19 +39,30 @@
                     <div class="container">
                         <div class="form-group">
                             <label for="usr">Họ tên <sup class="title-danger">*</sup>:</label>
-                            <input type="text" class="form-control" name="name" value="{!! $user->name ? $user->name : old('name') !!}" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email <sup class="title-danger">*</sup>:</label>
-                            <input type="email" class="form-control" name="email" value="{!! $user->email ? $user->email :  old('email') !!}" id="email" required>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{!! $user->name ? $user->name : old('name') !!}" id="name" required>
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="pwd">Số điện thoại <sup class="title-danger">*</sup>:</label>
-                            <input type="text" class="form-control" name="tel" value="{!! $user->tel ? $user->tel : old('tel') !!}" id="tel" required>
+                            <input type="text" class="form-control @error('tel') is-invalid @enderror" name="tel" value="{!! $user->tel ? $user->tel : old('tel') !!}" id="tel" required>
+                            @error('tel')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="usr">Địa chỉ giao hàng <sup class="title-danger">*</sup>:</label>
-                            <input type="text" class="form-control" name="address" value="{!! $user->address ? $user->address :  old('address') !!}" id="address" required>
+                            <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{!! $user->address ? $user->address :  old('address') !!}" id="address" required>
+                            @error('address')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                     </div>
                 </div>
