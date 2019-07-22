@@ -25,13 +25,13 @@ class IndexController extends Controller
     public function productDetail($id)
     {
         $product = Product::findOrFail($id);
-        $comments = Comment::where('product_id','=',$id)->orderby('date_time','desc')->paginate(5);
+        $comments = Comment::where('product_id','=',$id)->orderby('date_time','desc')->paginate(10);
         return view('product_detail',compact(['product','comments']));
     }
 
     public function getCategory()
     {
-        $products = Product::paginate(5);
+        $products = Product::paginate(10);
         return view('category',compact('products'));
     }
 

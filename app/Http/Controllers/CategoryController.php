@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(5);
+        $categories = Category::paginate(10);
         return view('admin.category.index',compact('categories'));
     }
 
@@ -108,7 +108,7 @@ class CategoryController extends Controller
                         ->orWhere('name','like','%'.$key.'%')->get();
             return view('admin.category.index',compact(['categories','key']));
         }
-        $categories = Category::paginate(5);
+        $categories = Category::paginate(10);
         return view('admin.category.index',compact('categories'));
     }
 }

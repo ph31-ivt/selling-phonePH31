@@ -10,7 +10,7 @@
                 @foreach($categories->take(4) as $category)
                     @if(count($category->products)>0)
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{!! $category->name !!}</a>
+                            <a class="nav-link" href="{{route('getProductByCategory',$category->id)}}">{!! $category->name !!}</a>
                         </li>
                     @endif
                 @endforeach

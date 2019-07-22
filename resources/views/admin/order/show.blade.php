@@ -87,15 +87,7 @@
                             <li><p>Order date:</p>  <span>{{ date('d/m/Y',strtotime($order->order_date))}}</span></li>
                             <li class="status">
                                 <p>Status:</p>
-                                    @if($order->status == 1)
-                                        <span class="pending">PENDING</span>
-                                    @elseif($order->status == 2)
-                                        <span class="approved">APPROVED</span>
-                                    @elseif($order->status == 3)
-                                        <span class="shipping">SHIPPING</span>
-                                    @elseif($order->status == 4)
-                                        <span class="cancel">CANCEL</span>
-                                    @endif
+                                    {{$order->status->name}}
                             </li>
                         </ul>
                     </div>

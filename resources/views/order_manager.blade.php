@@ -123,17 +123,7 @@
                                         </td>
                                         <td>{{number_format($order->total)}} đ</td>
                                         <td>
-                                            @if($order->status == 1)
-                                                <p class="pending">Đang xử lý</p>
-                                            @elseif($order->status == 2)
-                                                <p class="approved">Đã xử lý</p>
-                                            @elseif($order->status == 3)
-                                                <p class="shipping">Đang giao</p>
-                                            @elseif($order->status == 4)
-                                                <p class="cancel">Giao hàng thành công</p>
-                                            @elseif($order->status == 5)
-                                                <p class="cancel">Bị hủy bỏ</p>
-                                            @endif
+                                            {{$order->status->name}}
                                         </td>
                                     </tr>
                                 @endforeach

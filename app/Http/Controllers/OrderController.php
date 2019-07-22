@@ -15,7 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::paginate(5);
+        $orders = Order::paginate(10);
         $status = 'A';
         return view('admin.order.index',compact(['orders','status']));
     }
@@ -96,7 +96,7 @@ class OrderController extends Controller
 
     public function getProcessing()
     {
-        $orders = Order::where('status','=',1)->paginate(5);
+        $orders = Order::where('status_id','=',1)->paginate(10);
         $status = 'B';
         return view('admin.order.index',compact(['orders','status']));
     }
@@ -106,14 +106,14 @@ class OrderController extends Controller
 //        $id = $request->id;
         $shipper_id = $request->shipper_id;
         $order = Order::where('id','=',$id)
-            ->update(['status'=>2,'shipper_id'=>$shipper_id]);
+            ->update(['status_id'=>2,'shipper_id'=>$shipper_id]);
         return redirect()->back();
 
     }
 
     public function getExportOrder()
     {
-        $orders = Order::where('status','=',2)->paginate(5);
+        $orders = Order::where('status_id','=',2)->paginate(10);
         $status = 'C';
         return view('admin.order.index',compact(['orders','status']));
     }
@@ -121,7 +121,7 @@ class OrderController extends Controller
     public function exportOrder(Request $request, $id)
     {
         $order = Order::where('id','=',$id)
-            ->update(['status'=>3]);
+            ->update(['status_id'=>3]);
         return redirect()->back();
 
     }
@@ -130,11 +130,11 @@ class OrderController extends Controller
     {
         if (auth()->user()->user_type == User::USER_ADMIN)
         {
-            $orders = Order::where('status','=',3)->paginate(5);
+            $orders = Order::where('status_id','=',3)->paginate(10);
             $status = 'D';
             return view('admin.order.index',compact(['orders','status']));
         }
-        $orders = Order::where('status','=',3)->where('shipper_id','=',auth()->user()->id)->paginate(5);
+        $orders = Order::where('status_id','=',3)->where('shipper_id','=',auth()->user()->id)->paginate(10);
         $status = 'D';
         return view('admin.order.index',compact(['orders','status']));
     }
@@ -142,7 +142,7 @@ class OrderController extends Controller
     public function shippedOrder(Request $request, $id)
     {
         $order = Order::where('id','=',$id)
-            ->update(['status'=>4,'order_delivery_date'=>date('Y-m-d')]);
+            ->update(['status_id'=>4,'order_delivery_date'=>date('Y-m-d')]);
         return redirect()->back();
 
     }
@@ -150,13 +150,13 @@ class OrderController extends Controller
     public function cancel($id)
     {
         $order = Order::where('id','=',$id)
-            ->update(['status'=>5]);
+            ->update(['status_id'=>5]);
         return redirect()->back()->with('success','Cancel order successfully!');
     }
 
     public function getCancel()
     {
-        $orders = Order::where('status','=',5)->paginate(5);
+        $orders = Order::where('status_id','=',5)->paginate(10);
         $status = 'E';
         return view('admin.order.index',compact(['orders','status']));
     }
@@ -164,7 +164,7 @@ class OrderController extends Controller
     public function restoreOrders($id)
     {
         $order = Order::where('id','=',$id)
-            ->update(['status'=>1]);
+            ->update(['status_id'=>1]);
         return redirect()->back();
     }
 }

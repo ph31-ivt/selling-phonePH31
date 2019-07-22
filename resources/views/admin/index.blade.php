@@ -115,15 +115,15 @@
                             @endforeach
                         </td>
                         <td>
-                            @if($order->status == 1)
+                            @if($order->status_id == 1)
                                 <span class="label label-danger">PENDING</span>
-                            @elseif($order->status == 2)
+                            @elseif($order->status_id == 2)
                                 <span class="label label-info">APPROVED</span>
-                            @elseif($order->status == 3)
+                            @elseif($order->status_id == 3)
                                 <span class="label label-primary">SHIPPING</span>
-                            @elseif($order->status == 4)
+                            @elseif($order->status_id == 4)
                                 <span class="label label-success">FINISH</span>
-                            @elseif($order->status == 5)
+                            @elseif($order->status_id == 5)
                                 <span class="label label-warning">CANCEL</span>
                             @endif
                         </td>

@@ -102,7 +102,7 @@ Route::group(['prefix'=>'admin','middleware'=>'adminPage'],function () {
         Route::put('/shipped/{id}', 'OrderController@shippedOrder')->middleware('adminPage')->name('order.shipped');
     });
 
-    Route::prefix('comment')->group(function () {
+    Route::group(['prefix'=>'comments','middleware'=>'admin'],function () {
         Route::get('/list', 'CommentController@index')->name('comment.index');
         Route::get('/show/{product_id}', 'CommentController@show')->name('comment.show');
         Route::post('/comment/{product_id}', 'CommentController@store')->name('comment.store');

@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(5);
+        $products = Product::paginate(10);
         return view('admin.product.index',compact('products'));
     }
 
@@ -164,12 +164,12 @@ class ProductController extends Controller
                 ->orWhere('name','like','%'.$key.'%')
                 ->orWhere('price','like','%'.$key.'%')
                 ->orWhere('quantily','like','%'.$key.'%')
-                ->paginate(5);
+                ->paginate(10);
 //            dd($products);
 
             return view('admin.product.index',compact('products'));
         }
-        $products = Product::paginate(5);
+        $products = Product::paginate(10);
         return view('admin.product.index',compact('products'));
 
     }
